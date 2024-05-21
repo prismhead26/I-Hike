@@ -15,6 +15,8 @@ const Footer = () => {
           </button>
         )}
         <h4>&copy; {new Date().getFullYear()} - iHike</h4>
+        <br />
+        <h4>Aiden Wahed and Jackson Jones. Confidential and Proprietary. All Rights Reserved.</h4>
       </div>
     </footer>
   );
