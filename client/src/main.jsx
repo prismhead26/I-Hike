@@ -29,15 +29,11 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
-        path: "/myHikes",
-        element: <myHikes />,
-      },
-      {
         path: "/me",
         element: <Profile />,
       },
       {
-        path: "/profiles/:profileId",
+        path: "/myHikes/:profileId",
         element: <Profile />,
       },
     ],

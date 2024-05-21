@@ -12,16 +12,6 @@ export const ADD_PROFILE = gql`
   }
 `;
 
-export const ADD_SKILL = gql`
-  mutation addSkill($profileId: ID!, $skill: String!) {
-    addSkill(profileId: $profileId, skill: $skill) {
-      _id
-      name
-      skills
-    }
-  }
-`;
-
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -34,12 +24,54 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const REMOVE_SKILL = gql`
-  mutation removeSkill($skill: String!) {
-    removeSkill(skill: $skill) {
+export const ADD_FAVORITE = gql`
+  mutation addFavorite($hikeId: ID!) {
+    addFavorite(hikeId: $hikeId) {
       _id
       name
-      skills
+      favorite_hikes {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+export const REMOVE_FAVORITE = gql`
+  mutation removeFavorite($hikeId: ID!) {
+    removeFavorite(hikeId: $hikeId) {
+      _id
+      name
+      favorite_hikes {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+export const ADD_FUTURE = gql`
+  mutation addFuture($hikeId: ID!) {
+    addFuture(hikeId: $hikeId) {
+      _id
+      name
+      future_hikes {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+export const REMOVE_FUTURE = gql`
+  mutation removeFuture($hikeId: ID!) {
+    removeFuture(hikeId: $hikeId) {
+      _id
+      name
+      future_hikes {
+        _id
+        name
+      }
     }
   }
 `;
