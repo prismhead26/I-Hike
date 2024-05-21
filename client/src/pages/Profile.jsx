@@ -1,8 +1,9 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import SkillsList from '../components/SkillsList';
-import SkillForm from '../components/SkillForm';
+
+import FutureForm from '../components/FutureForm';
+import FavoriteForm from '../components/FavoriteForm';
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
 
@@ -43,20 +44,26 @@ const Profile = () => {
   return (
     <div>
       <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} friends have endorsed these
-        skills...
+        {profileId ? `${profile.name}'s` : 'Your'} favorite hikes...
       </h2>
-
-      {profile.skills?.length > 0 && (
-        <SkillsList
-          skills={profile.skills}
-          isLoggedInUser={!profileId && true}
+      {profile.favorite_hikes?.length > 0 && (
+        <FavoriteForm
+          favorite_hikes={profile.favorite_hikes}
+          profileId={profile._id}
         />
       )}
 
-      <div className="my-4 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <SkillForm profileId={profile._id} />
-      </div>
+      <h2 className="card-header">
+        {profileId ? `${profile.name}'s` : 'Your'} future hikes...
+      </h2>
+
+      {profile.future_hikes?.length > 0 && (
+        <FutureForm
+          future_hikes={profile.future_hikes}
+          profileId={profile._id}
+        />
+      )}
+
     </div>
   );
 };

@@ -2,24 +2,24 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_SKILL } from '../../utils/mutations';
+import { REMOVE_FAVORITE, REMOVE_FAVORITE } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-const SkillForm = ({ profileId }) => {
-  const [skill, setSkill] = useState('');
+// need to refactor this to be a favorite form as shown in the Profile.jsx
+const FavoriteForm = ({ favorite_hikes, profileId }) => {
 
-  const [addSkill, { error }] = useMutation(ADD_SKILL);
+  const [removeFavorite, { error }] = useMutation(REMOVE_FAVORITE);
+
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const data = await addSkill({
-        variables: { profileId, skill },
+      const data = await removeFavorite({
+        variables: { hikeId },
       });
 
-      setSkill('');
     } catch (err) {
       console.error(err);
     }
@@ -27,7 +27,7 @@ const SkillForm = ({ profileId }) => {
 
   return (
     <div>
-      <h4>Endorse some more skills below.</h4>
+      <h4>My Hikes</h4>
 
       {Auth.loggedIn() ? (
         <form
