@@ -1,6 +1,8 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const hikeSchema = require('./Hike');
+
 const profileSchema = new Schema({
   name: {
     type: String,
@@ -19,10 +21,16 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  skills: [
+  favorite_hikes: [
     {
-      type: String,
-      trim: true,
+      type: Schema.Types.ObjectId,
+      ref: 'Hike',
+    },
+  ],
+  future_hikes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Hike',
     },
   ],
 });

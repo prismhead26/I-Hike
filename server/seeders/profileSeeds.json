@@ -3,76 +3,119 @@
     "name": "Brian Kernighan",
     "email": "bkernighan@techfriends.dev",
     "password": "password01",
-    "skills": ["AWK", "AMPL", "Unix"]
+    "favorite_hikes": [
+      {
+        "name": "Mount Everest",
+        "location": "Nepal",
+        "difficulty": "Extreme",
+        "length": "29,032 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/adventure/photos/2019/11/26/everest-traffic/everest-traffic-01.adapt.1900.1.jpg"
+      },
+      {
+        "name": "Mount Kilimanjaro",
+        "location": "Tanzania",
+        "difficulty": "Extreme",
+        "length": "19,341 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/kilimanjaro/kilimanjaro-7.adapt.1900.1.jpg"
+      },
+      {
+        "name": "Mount Fuji",
+        "location": "Japan",
+        "difficulty": "Extreme",
+        "length": "12,389 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/japan/mount-fuji/mount-fuji-1.adapt.1900.1.jpg"
+      }
+    ],
+    "future_hikes": [
+      {
+        "name": "Mount Rainier",
+        "location": "Washington",
+        "difficulty": "Extreme",
+        "length": "14,411 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/washington/mount-rainier/mount-rainier-1.adapt.1900.1.jpg"
+      },
+      {
+        "name": "Mount Whitney",
+        "location": "California",
+        "difficulty": "Extreme",
+        "length": "14,505 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/california/mount-whitney/mount-whitney-1.adapt.1900.1.jpg"
+      },
+      {
+        "name": "Mount Elbrus",
+        "location": "Russia",
+        "difficulty": "Extreme",
+        "length": "18,510 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/russia/mount-elbrus/mount-elbrus-1.adapt.1900.1.jpg"
+      }
+    ]
   },
   {
     "name": "Max Kanat-Alexander",
     "email": "mkanatalexander@techfriends.dev",
     "password": "password02",
-    "skills": ["Java", "Perl", "Apache", "Python"]
+    "favorite_hikes": [
+      {
+        "name": "Mount Everest",
+        "location": "Nepal",
+        "difficulty": "Extreme",
+        "length": "29,032 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/adventure/photos/2019/11/26/everest-traffic/everest-traffic-01.adapt.1900.1.jpg"
+      },
+      {
+        "name": "Mount Kilimanjaro",
+        "location": "Tanzania",
+        "difficulty": "Extreme",
+        "length": "19,341 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/kilimanjaro/kilimanjaro-7.adapt.1900.1.jpg"
+      },
+      {
+        "name": "Mount Fuji",
+        "location": "Japan",
+        "difficulty": "Extreme",
+        "length": "12,389 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/japan/mount-fuji/mount-fuji-1.adapt.1900.1.jpg"
+      }
+    ],
+    "future_hikes": [
+      {
+        "name": "Mount Rainier",
+        "location": "Washington",
+        "difficulty": "Extreme",
+        "length": "14,411 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/washington/mount-rainier/mount-rainier-1.adapt.1900.1.jpg"
+      },
+      {
+        "name": "Mount Whitney",
+        "location": "California",
+        "difficulty": "Extreme",
+        "length": "14,505 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/california/mount-whitney/mount-whitney-1.adapt.1900.1.jpg"
+      },
+      {
+        "name": "Mount Elbrus",
+        "location": "Russia",
+        "difficulty": "Extreme",
+        "length": "18,510 feet",
+        "rating": "5 stars",
+        "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/russia/mount-elbrus/mount-elbrus-1.adapt.1900.1.jpg"
+      }
+    ]
   },
   {
     "name": "Amiko",
     "email": "amiko@techfriends.dev",
-    "password": "password03",
-    "skills": ["NodeJS", "MySQL", "MongoDB", "React", "CSS-in-JS"]
-  },
-  {
-    "name": "Kent Beck",
-    "email": "kbeck@techfriends.dev",
-    "password": "password04",
-    "skills": [
-      "Test-Driven Development",
-      "Extreme Programming",
-      "Software Design Patterns",
-      "JUnit"
-    ]
-  },
-  {
-    "name": "Edward V. Berard",
-    "email": "evberard@techfriends.dev",
-    "password": "password05",
-    "skills": ["Object-Oriented Design"]
-  },
-  {
-    "name": "Alan Kay",
-    "email": "akay@techfriends.dev",
-    "password": "password06",
-    "skills": [
-      "Graphical User Interface (GUI) Design",
-      "Jazz Guitar",
-      "Education"
-    ]
-  },
-  {
-    "name": "C.A.R. Hoare",
-    "email": "choare@techfriends.dev",
-    "password": "password07",
-    "skills": ["Algorithms", "Quicksort", "Hoare Logic"]
-  },
-  {
-    "name": "David Thomas",
-    "email": "dthomas@techfriends.dev",
-    "password": "password08",
-    "skills": ["Author", "Code Kata", "Ruby", "Pragmatic Programming"]
-  },
-  {
-    "name": "Donald Knuth",
-    "email": "dknuth@techfriends.dev",
-    "password": "password09",
-    "skills": ["TeX Computer Typesetting", "Algorithms", "Author"]
-  },
-  {
-    "name": "Lernantino",
-    "email": "lernantino@techfriends.dev",
-    "password": "password10",
-    "skills": [
-      "JavaScript",
-      "CSS",
-      "HTML",
-      "Design Systems",
-      "Typescript",
-      "PWAs"
-    ]
+    "password": "password03"
   }
 ]

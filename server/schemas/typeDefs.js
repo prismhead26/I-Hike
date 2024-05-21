@@ -4,7 +4,18 @@ const typeDefs = `
     name: String
     email: String
     password: String
-    skills: [String]!
+    favorite_hikes: [Hike]
+    future_hikes: [Hike]
+  }
+  
+  type Hike {
+    _id: ID
+    name: String
+    location: String
+    distance: Float
+    difficulty: String
+    description: String
+    image: String
   }
 
   type Auth {
@@ -23,9 +34,11 @@ const typeDefs = `
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
 
-    addSkill(profileId: ID!, skill: String!): Profile
     removeProfile: Profile
-    removeSkill(skill: String!): Profile
+    addFavorite(hikeId: ID!): Profile
+    removeFavorite(hikeId: ID!): Profile
+    addFuture(hikeId: ID!): Profile
+    removeFuture(hikeId: ID!): Profile
   }
 `;
 

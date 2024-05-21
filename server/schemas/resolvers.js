@@ -44,13 +44,12 @@ const resolvers = {
     },
 
     // Add a third argument to the resolver to access data in our `context`
-    addSkill: async (parent, { profileId, skill }, context) => {
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
+    addFavorite: async (parent, { hikeId }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
-          { _id: profileId },
+          { _id: context.user._id },
           {
-            $addToSet: { skills: skill },
+            $addToSet: { favorite_hikes: hikeId },
           },
           {
             new: true,
@@ -58,7 +57,6 @@ const resolvers = {
           }
         );
       }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
       throw AuthenticationError;
     },
     // Set up mutation so a logged in user can only remove their profile and no one else's
@@ -69,11 +67,36 @@ const resolvers = {
       throw AuthenticationError;
     },
     // Make it so a logged in user can only remove a skill from their own profile
-    removeSkill: async (parent, { skill }, context) => {
+    removeFavorite: async (parent, { hikeId }, context) => {
       if (context.user) {
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { skills: skill } },
+          { $pull: { favorite_hikes: hikeId } },
+          { new: true }
+        );
+      }
+      throw AuthenticationError;
+    },
+    addFuture: async (parent, { hikeId }, context) => {
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: { future_hikes: hikeId },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw AuthenticationError;
+    },
+    removeFuture: async (parent, { hikeId }, context) => {
+      if (context.user) {
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { future_hikes: hikeId } },
           { new: true }
         );
       }
