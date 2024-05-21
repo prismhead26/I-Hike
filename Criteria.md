@@ -1,123 +1,156 @@
-# 22 State: Redux Store (Extra Credit)
+# 23 Final Project: MERN Stack Single-Page Application
 
-## Your Task
+Projects have played a key role in your journey to becoming a full-stack web developer. As you apply for development jobs, your portfolio is absolutely vital to opening doors to opportunities. Your portfolio showcases high-quality deployed examples of your work, and you can use your finished projects for that very purpose.
 
-In this module, you learned how to manage global state using React’s Context API. The Context API is quickly gaining traction as a worthy alternative or perhaps even successor to other libraries that manage global state in tandem with React, such as Flux or MobX. Nonetheless, the open source JavaScript library Redux remains the industry standard for managing complex state in a large-scale React application, and you’ll likely encounter it on the job.
+This project is a fantastic opportunity to show employers your collaborative skills and coding abilities, especially in the context of a scalable, user-focused MERN app. Remember that employers want to see what you can do, but they also want to see how you work with other developers. The more examples of deployed collaborative work you have in your portfolio, the more likely you are to get an interview and a job.
 
-Your challenge this week is to refactor the e-commerce platform from [Activity 26](../01-Activities/26-Stu_Actions-Reducers/Unsolved) so that it uses [Redux](https://redux.js.org/). You won’t need to make sweeping changes to the code, but you will need to read through the Redux documentation on your own to find the information you need. Some guidelines have been provided in the Getting Started section to point you in the right direction. If you haven't yet, download the [e-commerce platform code from Activity 26](http://static.fullstack-bootcamp.com/fullstack-ground/unit-22/26-Stu_Actions-Reducers.zip).
+## Project Requirements
 
-**On the Job**: Web developers frequently have to immerse themselves in a new technology to solve a problem, with only that tool’s documentation for help. They must sift through it to find the information that matches the specific problem they’re trying to solve. This assignment will allow you to practice a skill that you’ll use many times over the course of your career.
+Your group will use everything you’ve learned throughout this course to create a MERN stack single-page application that works with real-world data to solve a real-world challenge, with a focus on data and user demand. This project will provide you with the best opportunity to demonstrate your problem-solving skills, which employers will want to see during interviews. Once again, the user story and acceptance criteria will depend on the project that you create, but your project must fulfill the following requirements:
 
-Remember, this module's Challenge is extra credit. It is not required for submission, nor will it count towards one of the two assignments that you can skip. If you choose to submit this Challenge, you will receive extra credit points on your final grade. However, if you choose not to submit it, your final grade will not be affected in any way. This Challenge is an opportunity for you to further practice your skills and get feedback on it, with the added incentive of receiving extra credit for the work.
+* Use React for the front end.
 
-## User Story
+* Use GraphQL with a Node.js and Express.js server.
 
-```md
-AS a senior engineer working on an e-commerce platform
-I WANT my platform to use Redux to manage global state instead of the Context API
-SO THAT my website's state management is taken out of the React ecosystem
-```
+* Use MongoDB and the Mongoose ODM for the database.
 
-## Acceptance Criteria
+* Use queries and mutations for retrieving, adding, updating, and deleting data.
 
-```md
-GIVEN an e-commerce platform that uses Redux to manage global state
-WHEN I review the app’s store
-THEN I find that the app uses a Redux store instead of the Context API
-WHEN I review the way the React front end accesses the store
-THEN I find that the app uses a Redux provider
-WHEN I review the way the app determines changes to its global state
-THEN I find that the app passes reducers to a Redux store instead of using the Context API
-WHEN I review the way the app extracts state data from the store
-THEN I find that the app uses Redux instead of the Context API
-WHEN I review the way the app dispatches actions
-THEN I find that the app uses Redux instead of the Context API
-```
+* Be deployed using Heroku (with data).
 
-## Mock-Up
+* Have a polished UI.
 
-This section reviews the web application's general appearance and functionality.
+* Be responsive.
 
-The following animation shows how a user can register using the Signup page and then navigate to the Products page:
+* Be interactive (i.e., accept and respond to user input).
 
-![A user registers on the Signup page and then navigates to the Products page, which displays images and descriptions of products.](./Assets/22-state-homework-demo-01.gif)
+* Include authentication (JWT).
 
-The following animation shows how the user can select a category, choose a product, view details about it on the product page, and add and remove it from their shopping cart:
+* Protect sensitive API key information on the server.
 
-![The user selects a category, chooses a product, views details about it on the product page, and adds it to and removes it from their shopping cart.](./Assets/22-state-homework-demo-02.gif)
+* Have a clean repository that meets quality coding standards (file structure, naming conventions, best practices for class and id naming conventions, indentation, high-quality comments, etc.).
 
-Finally, the user can check out by going to their shopping cart, as shown in the following animation:
+* Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-![The user checks out by going to their shopping cart.](./Assets/22-state-homework-demo-03.gif)
+### CSS Styling
 
-## Getting Started
+Instead of using a CSS library like Bootstrap, consider one of the following suggestions:
 
-For instructions to add Redux to your application, refer to the [Redux Fundamentals basic tutorial](https://redux.js.org/basics/basic-tutorial). Note that the documentation will refer to additional packages that you'll need to complete this implementation.
+* Look into the concept of CSS-in-JS, which abstracts CSS to the component level, using JavaScript to describe styles in a declarative and maintainable way. Some popular libraries include [styled-components](https://styled-components.com/) and [Emotion](https://emotion.sh/docs/introduction).
 
-Be sure to review ALL of the documentation, because there are newer methods that can make these tools much easier to implement. React has gone through several iterations; as such, some React-and-Redux tutorials will assume that you aren't using Hooks.
+* Try using a component library, such as [Semantic UI](https://semantic-ui.com/), [Chakra UI](https://chakra-ui.com/), or [Ant Design](https://ant.design/).
 
-You'll use the Stripe API to process payments, which includes making front-end and back-end changes. Don't worry, Stripe provides test credentials, so you won't need to use a real credit card to try it out. Refer to the [Stripe docs on testing your integration](https://stripe.com/docs/testing).
+* Create all the CSS for your application just using CSS.
+
+Ultimately, it doesn't matter which of these options you choose&mdash;it just needs to look professional and be mobile-friendly.
+
+### Payment Platform
+
+Consider integrating the Stripe payment platform. Even if you don’t create an e-commerce application, you could set up your site to accept charitable donations.
+
+### Bonus
+
+Although this is not a requirement for your project, see if you can also implement functionality to meet the minimum requirements of a PWA:
+
+* Uses a web manifest
+
+* Uses a service worker for offline functionality
+
+* Is installable
+
+## Presentation Requirements
+
+Use this [project presentation template](https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit?usp=sharing) to address the following:
+
+* Elevator pitch: a one minute description of your application
+
+* Concept: What is your user story? What was your motivation for development?
+
+* Process: What were the technologies used? How were tasks and roles broken down and assigned? What challenges did you encounter? What were your successes?
+
+* Demo: Show your stuff!
+
+* Directions for Future Development
+
+* Links to the deployed application and the GitHub repository. Use the [Guide to Deploy with Heroku and MongoDB Atlas](https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas) on The Full-Stack Blog if you need a reminder on how to deploy to Heroku.
 
 ## Grading Requirements
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
+This project is graded based on the following criteria:
 
-This Challenge is graded based on the following criteria:
+### Technical Acceptance Criteria: 25%
 
-### Technical Acceptance Criteria: 40%
+* Satisfies the following code requirements:
 
-* Satisfies all of the preceding acceptance criteria plus the following:
+  * Application uses React for the front end.
 
-  * Retains all the functionality of the original application.
+  * Application has a GraphQL API with a Node.js and Express.js server, and uses queries and mutations for retrieving, adding, updating, and deleting data.
 
-  * Application must be deployed to Render.
+  * Application uses MongoDB and the Mongoose ODM for the database and protects sensitive API key information on the server.
 
-### Deployment: 32%
+  * Application includes user authentication using JWT.
 
-* Application deployed at live URL.
+### Concept 10%
 
-* Application loads with no errors.
+* Application should be a unique and novel idea.
+
+* Your group should clearly and concisely articulate your project idea.
+
+### Deployment: 20%
+
+* Application deployed at live URL on Heroku and loads with no errors.
 
 * Application GitHub URL submitted.
 
-* GitHub repository contains application code.
-
-### Application Quality: 15%
-
-* User experience is intuitive and easy to navigate.
-
-* User interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
+### Repository Quality: 10%
 
 * Repository has a unique name.
 
 * Repository follows best practices for file structure and naming conventions.
 
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+* Repository follows best practices for class and id naming conventions, indentation, quality comments, etc.
 
 * Repository contains multiple descriptive commit messages.
 
-* Repository contains high-quality README file with description, screenshot, and link to the deployed application.
+* Repository contains a high-quality README file with description, screenshot, and link to deployed application.
 
-## Review
+### Application Quality: 15%
 
-You are required to submit BOTH of the following for review:
+* Application user experience is intuitive and easy to navigate.
 
-* The URL of the functional, deployed application.
+* Application user interface style is clean and polished.
+
+* Application is responsive.
+
+### Presentation 10%
+
+* Your group should present using a slide deck.
+
+* Every group member should speak during the presentation.
+
+* Your presentation should follow the [Project Presentation Template](https://docs.google.com/presentation/d/10QaO9KH8HtUXj__81ve0SZcpO5DbMbqqQr4iPpbwKks/edit?usp=sharing).
+
+### Collaboration 10%
+
+* There are no major disparities in the number of GitHub contributions between group members.
+
+### Bonus
+
+Fulfilling all three of the following requirements to turn your app into a PWA will add 10 points to your grade. Note that the highest grade you can achieve is still a 100:
+
+* Uses a web manifest
+
+* Uses a service worker for offline functionality
+
+* Is installable
+
+## How to Submit Your MERN Stack Single-Page Application
+
+**Each member of your group** is required to submit the following for review:
+
+* The URL of the deployed application.
 
 * The URL of the GitHub repository, with a unique name and a README describing the project.
 
 ---
-
 © 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
