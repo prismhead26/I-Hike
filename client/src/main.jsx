@@ -8,7 +8,7 @@ import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
-import myHikes from "./pages/myHikes";
+// import myHikes from "./pages/myHikes";
 
 const router = createBrowserRouter([
   {
