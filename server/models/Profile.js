@@ -1,43 +1,27 @@
-const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const Schema = mongoose.Schema;
 
-const hikeSchema = require('./Hike');
+const hikeSchema = new Schema({
+  name: { type: String },
+  location: { type: String },
+  difficulty: { type: String },
+  length: { type: String },
+  rating: { type: String },
+  image: { type: String },
+});
 
 const profileSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [/.+@.+\..+/, 'Must match an email address!'],
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 5,
-  },
-  favorite_hikes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Hike',
-    },
-  ],
-  future_hikes: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: 'Hike',
-    },
-  ],
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  favorite_hikes: [hikeSchema],
+  future_hikes: [hikeSchema],
 });
 
 // set up pre-save middleware to create password
-profileSchema.pre('save', async function (next) {
-  if (this.isNew || this.isModified('password')) {
+profileSchema.pre("save", async function (next) {
+  if (this.isNew || this.isModified("password")) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
@@ -50,6 +34,6 @@ profileSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-const Profile = model('Profile', profileSchema);
+const Profile = mongoose.model("Profile", profileSchema);
 
 module.exports = Profile;

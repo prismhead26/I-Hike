@@ -1,25 +1,22 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { REMOVE_FAVORITE, REMOVE_FAVORITE } from '../../utils/mutations';
+import { REMOVE_FAVORITE } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
-// need to refactor this to be a favorite form as shown in the Profile.jsx
-const FavoriteForm = ({ favorite_hikes, profileId }) => {
-
+const FavoriteForm = ({ favorite_hikes }) => {
+  const [selectedHikeId, setSelectedHikeId] = useState('');
   const [removeFavorite, { error }] = useMutation(REMOVE_FAVORITE);
-
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      const data = await removeFavorite({
-        variables: { hikeId },
+      await removeFavorite({
+        variables: { hikeId: selectedHikeId }, // Pass the selected hike ID to the mutation
       });
-
+      // Handle mutation response if needed
     } catch (err) {
       console.error(err);
     }
@@ -34,18 +31,21 @@ const FavoriteForm = ({ favorite_hikes, profileId }) => {
           className="flex-row justify-center justify-space-between-md align-center"
           onSubmit={handleFormSubmit}
         >
-          <div className="col-12 col-lg-9">
-            <input
-              placeholder="Endorse some skills..."
-              value={skill}
-              className="form-input w-100"
-              onChange={(event) => setSkill(event.target.value)}
-            />
-          </div>
+          {/* Display the favorite hikes and provide a way to select one */}
+          <select
+            value={selectedHikeId}
+            onChange={(event) => setSelectedHikeId(event.target.value)}
+          >
+            {favorite_hikes.map((hike) => (
+              <option key={hike.id} value={hike.id}>
+                {hike.name}
+              </option>
+            ))}
+          </select>
 
           <div className="col-12 col-lg-3">
             <button className="btn btn-info btn-block py-3" type="submit">
-              Endorse Skill
+              Remove Favorite
             </button>
           </div>
           {error && (
@@ -56,7 +56,7 @@ const FavoriteForm = ({ favorite_hikes, profileId }) => {
         </form>
       ) : (
         <p>
-          You need to be logged in to endorse skills. Please{' '}
+          You need to be logged in to manage favorite hikes. Please{' '}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
@@ -64,4 +64,4 @@ const FavoriteForm = ({ favorite_hikes, profileId }) => {
   );
 };
 
-export default SkillForm;
+export default FavoriteForm;

@@ -24,7 +24,7 @@ const ProfileList = ({ profiles, title }) => {
 
                 <Link
                   className="btn btn-block btn-squared btn-light text-dark"
-                  to={`/profiles/${profile._id}`}
+                  to={`/myHikes/${profile._id}`}
                 >
                   View and endorse their skills.
                 </Link>
