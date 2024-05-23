@@ -1,22 +1,22 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from "react-router-dom";
+import Auth from "../../utils/auth";
 
 const Footer = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   return (
     <footer className="w-100 mt-auto text-dark p-4">
       <div className="container text-center mb-5">
-        {location.pathname !== '/' && (
-          <button
-            className="btn btn-dark mb-3"
-            onClick={() => navigate(-1)}
-          >
-            &larr; Go Back
-          </button>
+        {Auth.loggedIn() && location.pathname !== "/" && (
+          <Link to={"/"} className="btn btn-dark mb-3">
+            Back
+          </Link>
         )}
         <h4>&copy; {new Date().getFullYear()} - iHike</h4>
         <br />
-        <h4>Aiden Wahed and Jackson Jones. Confidential and Proprietary. All Rights Reserved.</h4>
+        <h4>
+          Aiden Wahed and Jackson Jones. Confidential and Proprietary. All
+          Rights Reserved.
+        </h4>
       </div>
     </footer>
   );
