@@ -6,7 +6,7 @@ import { REMOVE_FAVORITE } from "../../utils/mutations";
 
 import Auth from "../../utils/auth";
 
-const FavoriteForm = ({ favorite_hikes, futureHikeId }) => {
+const FavoriteForm = ({ favorite_hikes }) => {
   const favHikes = favorite_hikes;
   console.log("fav hike obj", favHikes);
   const [selectedHikeId, setSelectedHikeId] = useState("");
