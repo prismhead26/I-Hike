@@ -1,20 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 
-import { REMOVE_FAVORITE } from '../../utils/mutations';
+import { REMOVE_FAVORITE } from "../../utils/mutations";
 
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 
-const FavoriteForm = ({ favorite_hikes }) => {
-  const [selectedHikeId, setSelectedHikeId] = useState('');
+const FavoriteForm = ({ favorite_hikes, futureHikeId }) => {
+  const favHikes = favorite_hikes;
+  console.log("fav hike obj", favHikes);
+  const [selectedHikeId, setSelectedHikeId] = useState("");
   const [removeFavorite, { error }] = useMutation(REMOVE_FAVORITE);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
+      console.log("hike id........", selectedHikeId);
       await removeFavorite({
-        variables: { hikeId: selectedHikeId }, // Pass the selected hike ID to the mutation
+        variables: { hikeId: favHikes[0]._id }, // Pass the selected hike ID to the mutation
       });
       // Handle mutation response if needed
     } catch (err) {
@@ -34,10 +37,13 @@ const FavoriteForm = ({ favorite_hikes }) => {
           {/* Display the favorite hikes and provide a way to select one */}
           <select
             value={selectedHikeId}
-            onChange={(event) => setSelectedHikeId(event.target.value)}
+            onChange={(event) => {
+              console.log("hike id", selectedHikeId);
+              setSelectedHikeId(event.target.value);
+            }}
           >
             {favorite_hikes.map((hike) => (
-              <option key={hike.id} value={hike.id}>
+              <option key={hike} value={hike.id}>
                 {hike.name}
               </option>
             ))}
@@ -56,7 +62,7 @@ const FavoriteForm = ({ favorite_hikes }) => {
         </form>
       ) : (
         <p>
-          You need to be logged in to manage favorite hikes. Please{' '}
+          You need to be logged in to manage favorite hikes. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}

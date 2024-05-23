@@ -1,13 +1,12 @@
-import { Navigate, useParams } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
+import { Navigate, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 
+import FutureForm from "../components/FutureForm";
+import FavoriteForm from "../components/FavoriteForm";
 
-import FutureForm from '../components/FutureForm';
-import FavoriteForm from '../components/FavoriteForm';
+import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";
 
-import { QUERY_SINGLE_PROFILE, QUERY_ME } from '../utils/queries';
-
-import Auth from '../utils/auth';
+// import Auth from "../utils/auth";
 
 const Profile = () => {
   const { profileId } = useParams();
@@ -24,9 +23,9 @@ const Profile = () => {
   const profile = data?.me || data?.profile || {};
 
   // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
-  if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-    return <Navigate to="/me" />;
-  }
+  // if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
+  //   return <Navigate to="/me" />;
+  // }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -44,7 +43,7 @@ const Profile = () => {
   return (
     <div>
       <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} favorite hikes...
+        {profileId ? `${profile.name}'s` : "Your"} favorite hikes...
       </h2>
       {profile.favorite_hikes?.length > 0 && (
         <FavoriteForm
@@ -54,7 +53,7 @@ const Profile = () => {
       )}
 
       <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : 'Your'} future hikes...
+        {profileId ? `${profile.name}'s` : "Your"} future hikes...
       </h2>
 
       {profile.future_hikes?.length > 0 && (
@@ -63,7 +62,6 @@ const Profile = () => {
           profileId={profile._id}
         />
       )}
-
     </div>
   );
 };

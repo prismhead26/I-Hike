@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
 
-import { REMOVE_FUTURE } from '../../utils/mutations';
+import { REMOVE_FUTURE } from "../../utils/mutations";
 
-import Auth from '../../utils/auth';
+import Auth from "../../utils/auth";
 
 const FutureForm = ({ future_hikes }) => {
-  const [selectedHikeId, setSelectedHikeId] = useState('');
+  const [selectedHikeId, setSelectedHikeId] = useState("");
   const [removeFuture, { error }] = useMutation(REMOVE_FUTURE);
 
   const handleFormSubmit = async (event) => {
@@ -37,7 +37,7 @@ const FutureForm = ({ future_hikes }) => {
             onChange={(event) => setSelectedHikeId(event.target.value)}
           >
             {future_hikes.map((hike) => (
-              <option key={hike.id} value={hike.id}>
+              <option key={hike} value={hike.id}>
                 {hike.name}
               </option>
             ))}
@@ -56,7 +56,7 @@ const FutureForm = ({ future_hikes }) => {
         </form>
       ) : (
         <p>
-          You need to be logged in to manage future hikes. Please{' '}
+          You need to be logged in to manage future hikes. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
       )}
