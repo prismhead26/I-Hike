@@ -1,3 +1,4 @@
-const Profile = require('./Profile');
+const Profile = require("./Profile");
+const Hike = require("./Hike");
 
-module.exports = { Profile };
+module.exports = { Profile, Hike };

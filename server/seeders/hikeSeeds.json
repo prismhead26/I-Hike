@@ -1,0 +1,51 @@
+[
+    {
+      "name": "Mount Everest",
+      "location": "Nepal",
+      "difficulty": "Extreme",
+      "distance": "29,032 feet",
+      "rating": "5 stars",
+      "image": "https://www.nationalgeographic.com/content/dam/adventure/photos/2019/11/26/everest-traffic/everest-traffic-01.adapt.1900.1.jpg"
+    },
+    {
+      "name": "Mount Kilimanjaro",
+      "location": "Tanzania",
+      "difficulty": "Extreme",
+      "distance": "19,341 feet",
+      "rating": "5 stars",
+      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/kilimanjaro/kilimanjaro-7.adapt.1900.1.jpg"
+    },
+    {
+      "name": "Mount Fuji",
+      "location": "Japan",
+      "difficulty": "Extreme",
+      "distance": "12,389 feet",
+      "rating": "5 stars",
+      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/japan/mount-fuji/mount-fuji-1.adapt.1900.1.jpg"
+    },
+    {
+      "name": "Mount Rainier",
+      "location": "Washington",
+      "difficulty": "Extreme",
+      "distance": "14,411 feet",
+      "rating": "5 stars",
+      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/washington/mount-rainier/mount-rainier-1.adapt.1900.1.jpg"
+    },
+    {
+      "name": "Mount Whitney",
+      "location": "California",
+      "difficulty": "Extreme",
+      "distance": "14,505 feet",
+      "rating": "5 stars",
+      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/california/mount-whitney/mount-whitney-1.adapt.1900.1.jpg"
+    },
+    {
+      "name": "Mount Elbrus",
+      "location": "Russia",
+      "difficulty": "Extreme",
+      "distance": "18,510 feet",
+      "rating": "5 stars",
+      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/russia/mount-elbrus/mount-elbrus-1.adapt.1900.1.jpg"
+    }
+  ]
+

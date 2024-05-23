@@ -2,21 +2,12 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Schema = mongoose.Schema;
 
-const hikeSchema = new Schema({
-  name: { type: String },
-  location: { type: String },
-  difficulty: { type: String },
-  length: { type: String },
-  rating: { type: String },
-  image: { type: String },
-});
-
 const profileSchema = new Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  favorite_hikes: [hikeSchema],
-  future_hikes: [hikeSchema],
+  favorite_hikes: [{ type: Schema.Types.ObjectId, ref: "Hike" }],
+  future_hikes: [{ type: Schema.Types.ObjectId, ref: "Hike" }],
 });
 
 // set up pre-save middleware to create password
