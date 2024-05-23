@@ -24,8 +24,6 @@ const FutureForm = ({ future_hikes }) => {
 
   return (
     <div>
-      <h4>My Future Hikes</h4>
-
       {Auth.loggedIn() ? (
         <form
           className="flex-row justify-center justify-space-between-md align-center"
