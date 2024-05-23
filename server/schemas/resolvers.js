@@ -4,16 +4,22 @@ const { signToken, AuthenticationError } = require("../utils/auth");
 const resolvers = {
   Query: {
     profiles: async () => {
-      return Profile.find();
+      return Profile.find()
+        .populate({ path: "favorite_hikes" })
+        .populate({ path: "future_hikes" });
     },
 
     profile: async (parent, { profileId }) => {
-      return Profile.findOne({ _id: profileId });
+      return Profile.findOne({ _id: profileId })
+        .populate({ path: "favorite_hikes" })
+        .populate({ path: "future_hikes" });
     },
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
-        return Profile.findOne({ _id: context.user._id });
+        return Profile.findOne({ _id: context.user._id })
+          .populate({ path: "favorite_hikes" })
+          .populate({ path: "future_hikes" });
       }
       throw AuthenticationError;
     },
