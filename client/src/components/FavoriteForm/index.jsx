@@ -23,9 +23,7 @@ const FavoriteForm = ({ favorite_hikes }) => {
   };
 
   return (
-    <div>
-      <h4>My Hikes</h4>
-
+    <div>   
       {Auth.loggedIn() ? (
         <form
           className="flex-row justify-center justify-space-between-md align-center"
