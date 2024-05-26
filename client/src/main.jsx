@@ -11,7 +11,7 @@ import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
-// import myHikes from "./pages/myHikes";
+import Trail from "./pages/Trail";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/myHikes/:profileId",
         element: <Profile />,
+      },
+      {
+        path: "/trail/:trailId",
+        element: <Trail />,
       },
     ],
   },

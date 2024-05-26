@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Input } from "@mui/base";
 import { Button } from "@mui/base";
 
+import { Link } from "react-router-dom";
+
 import { fetchWeather } from "../utils/API/openWeatherMap";
 
 import { fetchHikingTrails } from "../utils/API/googleMaps";
@@ -28,6 +30,15 @@ const Home = () => {
       fetchHikingTrails(setTrails, setLoading, setError, newLat, newLng);
     }
   }, [newLat, newLng]);
+
+  // create test trail
+  const trail = {
+    placeId: "ChIJrTLr-GyuEmsRBfy61i59si0",
+    latitude: 37.7749295,
+    longitude: -122.4194155,
+    name: "San Francisco",
+    description: "San Francisco is a city in California, USA",
+  };
 
   return (
     <main>
@@ -99,6 +110,12 @@ const Home = () => {
             </div>
           ))
         )}
+        {/* test trail */}
+        <div>
+          <h1>{trail.name}</h1>
+          <p>{trail.description}</p>
+          <Link to={`/trail/${trail.placeId}`}>View Trail</Link>
+        </div>
       </div>
     </main>
   );
