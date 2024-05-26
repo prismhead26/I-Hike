@@ -2,6 +2,11 @@
 
 const apiKey = "1659a8c1977a91b5deedda1d9206f21e";
 
+let location = {
+  lat: null,
+  lng: null,
+};
+
 export const fetchWeather = async (city, setWeather, setLoading, setError) => {
   setLoading(true);
   setError(null); // Clear previous errors
@@ -15,6 +20,9 @@ export const fetchWeather = async (city, setWeather, setLoading, setError) => {
     const weatherData = await weatherResponse.json();
 
     const { lon, lat } = weatherData.coord;
+    location.lat = lat;
+    location.lng = lon;
+
     const detailedWeatherResponse = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
     );
@@ -38,4 +46,10 @@ export const fetchWeather = async (city, setWeather, setLoading, setError) => {
   } finally {
     setLoading(false);
   }
+};
+
+// export location for google maps
+
+export const getLocation = () => {
+  return location;
 };

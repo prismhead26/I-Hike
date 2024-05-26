@@ -4,11 +4,24 @@ import { Button } from "@mui/base";
 
 import { fetchWeather } from "../utils/API/openWeatherMap";
 
+import { fetchHikingTrails } from "../utils/API/googleMaps";
+
+// import { getLocation } from "../utils/API/openWeatherMap";
+
 const Home = () => {
+  // use state to store the city name
   const [city, setCity] = useState("");
+  // use state to store the weather data
   const [weather, setWeather] = useState(null);
+  // use state to store loading state
   const [loading, setLoading] = useState(false);
+  // use state to store error
   const [error, setError] = useState(null);
+
+  // console.log(getLocation());
+
+  // set state to store trails
+  const [trails, setTrails] = useState(null);
 
   return (
     <main>
@@ -23,7 +36,10 @@ const Home = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => fetchWeather(city, setWeather, setLoading, setError)}
+            onClick={() => {
+              fetchWeather(city, setWeather, setLoading, setError);
+              fetchHikingTrails(setTrails, setLoading, setError);
+            }}
             className="btn btn-outline-secondary"
           >
             Search
