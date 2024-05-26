@@ -20,35 +20,26 @@
 
 const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 
-let newLocation = {
-  lat: null,
-  lng: null,
-};
-
-export const getLocation = (lat, lng) => {
-  newLocation = {
-    lat: lat,
-    lng: lng,
-  };
-};
-console.log("newLocation...", newLocation);
-
 // create fetchHikingTrails function
 export const fetchHikingTrails = async (
   setTrails,
   setLoading,
   setError,
-  location
+  newLat,
+  newLng
 ) => {
   setLoading(true);
   setError(null); // Clear previous errors
   setTrails(null); // Clear previous hiking trails data
 
+  console.log("newLat...", newLat);
+  console.log("newLng...", newLng);
   try {
     // Fetch hiking trails data using Google Maps API
     // set mode to no-cors to avoid CORS error
     const hikingTrailsResponse = await fetch(
-      `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+near+me&location=${newLocation.lat},${newLocation.lng}&radius=500&type=hiking_area&region=us&key=${apiKey}`,
+      `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+near+me&location=${newLat},${newLng}&radius=500&type=hiking_area&region=us&key=${apiKey}`,
+      //   `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+near+me&location=40,-105&radius=500&type=hiking_area&region=us&key=AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA`,
       {
         mode: "no-cors",
       }

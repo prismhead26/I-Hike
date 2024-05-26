@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@mui/base";
 import { Button } from "@mui/base";
 
 import { fetchWeather } from "../utils/API/openWeatherMap";
 
 import { fetchHikingTrails } from "../utils/API/googleMaps";
-
-// import { getLocation } from "../utils/API/openWeatherMap";
 
 const Home = () => {
   // use state to store the city name
@@ -18,10 +16,18 @@ const Home = () => {
   // use state to store error
   const [error, setError] = useState(null);
 
-  // console.log(getLocation());
-
   // set state to store trails
   const [trails, setTrails] = useState(null);
+
+  const [newLat, setNewLat] = useState(null);
+  const [newLng, setNewLng] = useState(null);
+
+  //  use effect to keep location in sync with google maps
+  useEffect(() => {
+    if (newLat && newLng) {
+      fetchHikingTrails(setTrails, setLoading, setError, newLat, newLng);
+    }
+  }, [newLat, newLng]);
 
   return (
     <main>
@@ -37,8 +43,14 @@ const Home = () => {
             variant="contained"
             color="primary"
             onClick={() => {
-              fetchWeather(city, setWeather, setLoading, setError);
-              fetchHikingTrails(setTrails, setLoading, setError);
+              fetchWeather(
+                city,
+                setWeather,
+                setLoading,
+                setError,
+                setNewLat,
+                setNewLng
+              );
             }}
             className="btn btn-outline-secondary"
           >

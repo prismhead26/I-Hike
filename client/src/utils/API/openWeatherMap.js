@@ -1,10 +1,15 @@
 // file for API calls to OpenWeatherMap
 
-import { getLocation } from "./googleMaps";
-
 const apiKey = "1659a8c1977a91b5deedda1d9206f21e";
 
-export const fetchWeather = async (city, setWeather, setLoading, setError) => {
+export const fetchWeather = async (
+  city,
+  setWeather,
+  setLoading,
+  setError,
+  setNewLat,
+  setNewLng
+) => {
   setLoading(true);
   setError(null); // Clear previous errors
   setWeather(null); // Clear previous weather data
@@ -18,7 +23,8 @@ export const fetchWeather = async (city, setWeather, setLoading, setError) => {
 
     const { lon, lat } = weatherData.coord;
 
-    getLocation({ lat: lat, lng: lon });
+    setNewLat(lat);
+    setNewLng(lon);
 
     const detailedWeatherResponse = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
