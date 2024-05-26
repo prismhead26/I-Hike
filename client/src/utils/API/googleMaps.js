@@ -18,18 +18,31 @@
 
 // import { useEffect, useState } from "react";
 
-import { getLocation } from "./openWeatherMap";
-
 const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 
+let newLocation = {
+  lat: null,
+  lng: null,
+};
+
+export const getLocation = (lat, lng) => {
+  newLocation = {
+    lat: lat,
+    lng: lng,
+  };
+};
+console.log("newLocation...", newLocation);
+
 // create fetchHikingTrails function
-export const fetchHikingTrails = async (setTrails, setLoading, setError) => {
+export const fetchHikingTrails = async (
+  setTrails,
+  setLoading,
+  setError,
+  location
+) => {
   setLoading(true);
   setError(null); // Clear previous errors
   setTrails(null); // Clear previous hiking trails data
-
-  const newLocation = getLocation();
-  console.log("newLocation...", newLocation.lat, newLocation.lng);
 
   try {
     // Fetch hiking trails data using Google Maps API
@@ -40,6 +53,7 @@ export const fetchHikingTrails = async (setTrails, setLoading, setError) => {
         mode: "no-cors",
       }
     );
+
     const hikingTrailsData = hikingTrailsResponse;
     console.log("hikingTrailsResponse...", hikingTrailsResponse);
 
