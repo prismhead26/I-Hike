@@ -2,51 +2,13 @@ import React, { useState } from "react";
 import { Input } from "@mui/base";
 import { Button } from "@mui/base";
 
+import { fetchWeather } from "../utils/API/openWeatherMap";
+
 const Home = () => {
   const [city, setCity] = useState("");
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const apiKey = "1659a8c1977a91b5deedda1d9206f21e";
-
-  const handleSearch = async () => {
-    setLoading(true);
-    setError(null); // Clear previous errors
-    setWeather(null); // Clear previous weather data
-
-    try {
-      // Fetch weather data using OpenWeather API
-      const weatherResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`
-      );
-      const weatherData = await weatherResponse.json();
-
-      const { lon, lat } = weatherData.coord;
-      const detailedWeatherResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
-      );
-      const detailedWeatherData = await detailedWeatherResponse.json();
-
-      console.log(detailedWeatherData);
-
-      // Map the data to the required format
-      const weatherInfo = {
-        description: detailedWeatherData.weather[0].description,
-        temperature: detailedWeatherData.main.temp,
-        humidity: detailedWeatherData.main.humidity,
-        windSpeed: detailedWeatherData.wind.speed,
-        icon: detailedWeatherData.weather[0].icon,
-      };
-
-      setWeather(weatherInfo);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setError(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   return (
     <main>
@@ -61,7 +23,7 @@ const Home = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={handleSearch}
+            onClick={() => fetchWeather(city, setWeather, setLoading, setError)}
             className="btn btn-outline-secondary"
           >
             Search
