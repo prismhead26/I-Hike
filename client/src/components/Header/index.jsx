@@ -1,47 +1,132 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import Auth from "../../utils/auth";
+
+import * as React from "react";
+import { useTheme } from "@mui/material/styles";
+import IconButton from "@mui/material/IconButton";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
+
+// import { ColorModeContext } from "../../DarkMode";
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 const Header = () => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
+  const currentPage = useLocation().pathname;
+
+  const theme = useTheme();
+  const colorMode = React.useContext(ColorModeContext);
+
   return (
-    <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
-      <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <Link className="text-dark" to="/">
-          <h1 className="m-0" style={{ fontSize: "3rem" }}>
-            I-Hike
-          </h1>
-        </Link>
-        <p className="m-0" style={{ fontSize: "1.75rem", fontWeight: "700" }}>
-          Life is an adventure!
-        </p>
-        <div>
-          {Auth.loggedIn() ? (
-            <>
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
-                my Hikes
-              </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-primary m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
+    <header>
+      <nav
+        className="navbar navbar-expand-lg navbar-light"
+        style={{ backgroundColor: "#92AFD7" }}
+      >
+        <div className="container fluid">
+          <a className="custom navbar-brand" href="/">
+            <b>
+              <i>I-Hike</i>
+            </b>
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              {/* add darkmode icon btn */}
+              <li className="custom mx-2 nav-item">
+                <b>
+                  <i>{theme.palette.mode} mode</i>
+                </b>
+                <IconButton
+                  sx={{ ml: 1 }}
+                  onClick={colorMode.toggleColorMode}
+                  color="inherit"
+                >
+                  {theme.palette.mode === "dark" ? (
+                    <Brightness7Icon />
+                  ) : (
+                    <Brightness4Icon />
+                  )}
+                </IconButton>
+              </li>
+
+              {/* if logged in show myHikes and logout else show login and signup */}
+              {Auth.loggedIn() ? (
+                <>
+                  <li className="custom mx-2 nav-item">
+                    <Link
+                      to="/me"
+                      className={
+                        currentPage === "/me" ? "nav-link active" : "nav-link"
+                      }
+                    >
+                      <b>
+                        <i>myHikes</i>
+                      </b>
+                    </Link>
+                  </li>
+                  <li className="custom mx-2 nav-item">
+                    <a href="/" onClick={logout} className="nav-link">
+                      <b>
+                        <i>Logout</i>
+                      </b>
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className="custom mx-2 nav-item">
+                    <Link
+                      to="/login"
+                      className={
+                        currentPage === "/login"
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <b>
+                        <i>Login</i>
+                      </b>
+                    </Link>
+                  </li>
+                  <li className="custom mx-2 nav-item">
+                    <Link
+                      to="/signup"
+                      className={
+                        currentPage === "/signup"
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <b>
+                        <i>Signup</i>
+                      </b>
+                    </Link>
+                  </li>
+                </>
+              )}
+            </ul>
+          </div>
         </div>
-      </div>
+      </nav>
     </header>
   );
 };
 
 export default Header;
+export { ColorModeContext };

@@ -1,9 +1,9 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
+
+
 
 .logo {
   height: 6em;
@@ -44,3 +44,38 @@
 .cityInput {
   margin-bottom: 10px;
 }
+
+/* .weather-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 15px;
+} */
+
+
+/* .input-button-container {
+  display: flex;
+} */
+
+/* .searchButton {
+  margin-left: 5px;
+  background-color: #1b89bc;
+  border-radius: 5px;
+  color: white;
+}
+
+.searchButton:hover {
+  background-color: #065b83;
+  transition: .25s ease;
+} */
+
+.weather-temp {
+  margin: 0;
+}
+
+.weather-icon {
+  width: 50px;
+  height: 50px;
+}
+

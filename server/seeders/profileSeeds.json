@@ -14,5 +14,10 @@
     "name": "Amiko",
     "email": "amiko@techfriends.dev",
     "password": "password03"
+  },
+  {
+    "name": "McTesterson",
+    "email": "example@gmail.com",
+    "password": "password"
   }
 ]

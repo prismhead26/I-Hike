@@ -1706,32 +1706,3 @@ label form [type='radio'] {
     align-content: center;
   }
 }
-
-.weather-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-top: 15px;
-}
-
-.input-button-container {
-  display: flex;
-}
-
-.searchButton {
-  margin-left: 5px;
-  background-color: #1b89bc;
-  border-radius: 5px;
-  color: white;
-}
-
-.searchButton:hover {
-  background-color: #065b83;
-  transition: .25s ease;
-}
-
-.temp {
-  margin: 0;
-}
-

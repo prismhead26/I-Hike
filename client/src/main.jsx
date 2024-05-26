@@ -1,9 +1,11 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom/dist";
 import "./index.css";
+import "./App.css";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import App from "./App.jsx";
+import App from "./DarkMode";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
