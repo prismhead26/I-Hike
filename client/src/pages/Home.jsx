@@ -75,6 +75,18 @@ const Home = () => {
             </div>
           )
         )}
+        {loading ? (
+          <div>Loading...</div>
+        ) : (
+          trails &&
+          trails.map((trail, index) => (
+            <div key={index}>
+              <p>{trail.name}</p>
+              <p>{trail.rating}</p>
+              <p>{trail.address}</p>
+            </div>
+          ))
+        )}
       </div>
     </main>
   );
