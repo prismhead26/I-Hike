@@ -66,33 +66,33 @@ export const fetchHikingTrails = async (
     });
   }, [newLat, newLng]);
 
-  return (
-    <APIProvider apiKey={apiKey}>
-      <Map
-        mapStyle="mapbox://styles/mapbox/light-v9"
-        initialViewState={{
-          latitude: newLat,
-          longitude: newLng,
-          zoom: 12,
-        }}
-        width="100%"
-        height="100%"
-      >
-        {state.coordsResult.map((trail, index) => (
-          <AdvancedMarker
-            key={index}
-            latitude={trail.location.lat()}
-            longitude={trail.location.lng()}
-          >
-            <InfoWindow>
-              <div>
-                <h3>{trail.name}</h3>
-                <p>{trail.address}</p>
-              </div>
-            </InfoWindow>
-          </AdvancedMarker>
-        ))}
-      </Map>
-    </APIProvider>
-  );
+  //   return (
+  //     <APIProvider apiKey={apiKey}>
+  //       <Map
+  //         mapStyle="mapbox://styles/mapbox/light-v9"
+  //         initialViewState={{
+  //           latitude: newLat,
+  //           longitude: newLng,
+  //           zoom: 12,
+  //         }}
+  //         width="100%"
+  //         height="100%"
+  //       >
+  //         {state.coordsResult.map((trail, index) => (
+  //           <AdvancedMarker
+  //             key={index}
+  //             latitude={trail.location.lat()}
+  //             longitude={trail.location.lng()}
+  //           >
+  //             <InfoWindow>
+  //               <div>
+  //                 <h3>{trail.name}</h3>
+  //                 <p>{trail.address}</p>
+  //               </div>
+  //             </InfoWindow>
+  //           </AdvancedMarker>
+  //         ))}
+  //       </Map>
+  //     </APIProvider>
+  //   );
 };

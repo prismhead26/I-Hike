@@ -2,17 +2,12 @@
 
 const apiKey = "1659a8c1977a91b5deedda1d9206f21e";
 
-export const fetchWeather = async (
-  city,
-  setWeather,
-  setLoading,
-  setError,
-  setNewLat,
-  setNewLng
-) => {
+export const fetchWeather = async (city, setWeather, setLoading, setError) => {
   setLoading(true);
   setError(null); // Clear previous errors
   setWeather(null); // Clear previous weather data
+
+  const coords = { lat: null, lng: null };
 
   try {
     // Fetch weather data using OpenWeather API
@@ -22,9 +17,6 @@ export const fetchWeather = async (
     const weatherData = await weatherResponse.json();
 
     const { lon, lat } = weatherData.coord;
-
-    setNewLat(lat);
-    setNewLng(lon);
 
     const detailedWeatherResponse = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`
@@ -43,10 +35,16 @@ export const fetchWeather = async (
     };
 
     setWeather(weatherInfo);
+    coords.lat = lat;
+    coords.lng = lon;
   } catch (error) {
     console.error("Error fetching data:", error);
     setError(error.message);
   } finally {
     setLoading(false);
   }
+
+  return {
+    coords,
+  };
 };

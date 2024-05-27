@@ -4,9 +4,8 @@ const TrailsList = ({ trails }) => {
   return (
     <div>
       {trails.map((trail) => (
-        <div key={trail.id}>
+        <div key={trail.placeId}>
           <h3>{trail.name}</h3>
-          <p>{trail.description}</p>
           {/* Add more trail details here */}
         </div>
       ))}

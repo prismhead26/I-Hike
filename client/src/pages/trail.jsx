@@ -8,11 +8,16 @@ import {
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
 import { useCallback, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 // api key for google maps
 const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 
 const CustomMap = () => {
+  // retrieve the trail from the state that was passed
+  const trailData = useLocation().state;
+  console.log("trailData...", trailData);
+
   //   const [trail, setTrail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

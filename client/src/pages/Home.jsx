@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import { fetchWeather } from "../utils/API/openWeatherMap";
 
-import { fetchHikingTrails } from "../utils/API/googleMaps";
+import { useGoogleMaps } from "../hooks/useGoogleMaps";
 
 import TrailsList from "../components/TrailsList";
 
@@ -20,25 +20,26 @@ const Home = () => {
   // use state to store error
   const [error, setError] = useState(null);
 
-  // set state to store trails
-  const [trails, setTrails] = useState(null);
-
-  const [newLat, setNewLat] = useState(null);
-  const [newLng, setNewLng] = useState(null);
+  const { trails, googleMap } = useGoogleMaps();
 
   //  use effect to keep location in sync with google maps
-  useEffect(() => {
-    console.log("hello ....");
-    if (newLat && newLng) {
-      fetchHikingTrails(setTrails, setLoading, setError, newLat, newLng);
-    }
-  }, [newLat, newLng]);
+  // useEffect(() => {
+  //   console.log("hello ....");
+  //   const loadTrails = () => {
+  //     if (newLat && newLng) {
+  //       FetchHikingTrails(setTrails, setLoading, setError, newLat, newLng);
+  //     }
+  //   };
+
+  //   loadTrails();
+  // }, [newLat, newLng]);
 
   // create test trail
   const trail = {
     placeId: "ChIJ88_pHgHsa4cR9lKp4yqutgQ",
-    latitude: 37.7749295,
-    longitude: -122.4194155,
+    latitude: 39.997246,
+    longitude: -105.280243,
+    location: { lat: 39.997246, lng: -105.280243 },
     name: "Enchanted Mesa Trail",
     description: "Enchanted Mesa Trail is a trail in Colorado, USA",
   };
@@ -57,14 +58,20 @@ const Home = () => {
             variant="contained"
             color="primary"
             onClick={() => {
-              fetchWeather(
-                city,
-                setWeather,
-                setLoading,
-                setError,
-                setNewLat,
-                setNewLng
-              );
+              console.log("button clicked");
+              try {
+                fetchWeather(city, setWeather, setLoading, setError);
+                const { coords } = fetchWeather(
+                  city,
+                  setWeather,
+                  setLoading,
+                  setError
+                );
+                console.log("coords...", coords);
+              } catch (error) {
+                console.error("Error fetching data:", error);
+                setError(error.message);
+              }
             }}
             className="btn btn-outline-secondary"
           >
@@ -110,7 +117,12 @@ const Home = () => {
         <div>
           <h1>{trail.name}</h1>
           <p>{trail.description}</p>
-          <Link to={`/trail/${trail.placeId}`}>View Trail</Link>
+          {/* pass in trail data to link to access on trails page */}
+          <Link to={{ pathname: `/trail/${trail.placeId}`, state: { trail } }}>
+            <Button variant="contained" color="primary">
+              View Trail
+            </Button>
+          </Link>
         </div>
       </div>
     </main>
