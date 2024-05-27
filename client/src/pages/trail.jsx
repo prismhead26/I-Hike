@@ -25,6 +25,7 @@ const CustomMap = () => {
     placeId: "ChIJ88_pHgHsa4cR9lKp4yqutgQ",
     latitude: 39.997246,
     longitude: -105.280243,
+    location: { lat: 39.997246, lng: -105.280243 },
     name: "Enchanted Mesa Trail",
     description: "Enchanted Mesa Trail is a trail in Colorado, USA",
   };
@@ -34,7 +35,7 @@ const CustomMap = () => {
     trail: [],
   });
 
-  const center = { lat: 40.015, lng: -105.2705 };
+  const center = trail.location;
 
   useEffect(() => {
     if (!placesLib || !map) return;
