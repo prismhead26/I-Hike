@@ -9,70 +9,64 @@ import {
 } from "@vis.gl/react-google-maps";
 import { useCallback, useEffect, useState } from "react";
 
-export default function Trail() {
+// api key for google maps
+const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
+
+const CustomMap = () => {
   //   const [trail, setTrail] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [map, setMap] = useState(null);
-  const [mapsLibrary, setMapsLibrary] = useState(null);
-  const [marker, setMarker] = useState(null);
-  const [infoWindow, setInfoWindow] = useState(null);
-  const [advancedMarkerRef, setAdvancedMarkerRef] = useState(null);
 
-  const { google } = useMapsLibrary();
-  const { map: mapObject } = useMap();
+  const map = useMap();
+  const placesLib = useMapsLibrary("places");
 
   //   create test trail
   const trail = {
-    placeId: "ChIJrTLr-GyuEmsRBfy61i59si0",
-    latitude: 37.7749295,
-    longitude: -122.4194155,
-    name: "San Francisco",
-    description: "San Francisco is a city in California, USA",
+    placeId: "ChIJ88_pHgHsa4cR9lKp4yqutgQ",
+    latitude: 39.997246,
+    longitude: -105.280243,
+    name: "Enchanted Mesa Trail",
+    description: "Enchanted Mesa Trail is a trail in Colorado, USA",
   };
 
-  const placesLib = useMapsLibrary().maps("places");
+  const [state, setState] = useState({
+    center: { lat: trail.latitude, lng: trail.longitude },
+    trail: [],
+  });
 
-  const getTrail = useCallback(async () => {
-    try {
-      const svc = new placesLib.PlacesService(map);
-      svc.getDetails(
-        {
-          placeId: trail.placeId,
-        },
-        (place, status) => {
-          if (status === placesLib.PlacesServiceStatus.OK) {
-            //   setTrail(place);
-          }
-        }
-      );
-      setLoading(false);
-    } catch (error) {
-      setError(error);
-    }
-  }, [map, trail.placeId]);
+  const center = { lat: 40.015, lng: -105.2705 };
 
   useEffect(() => {
-    getTrail();
-  }, [getTrail]);
+    if (!placesLib || !map) return;
 
-  useEffect(() => {
-    if (mapObject) {
-      setMap(mapObject);
-    }
-  }, [mapObject]);
+    //  display the trail on the map from placeId
+    const request = {
+      placeId: trail.placeId,
+      fields: ["name", "geometry", "formatted_address"],
+    };
 
-  useEffect(() => {
-    if (google) {
-      setMapsLibrary(google);
-    }
-  }, [google]);
+    const service = new placesLib.PlacesService(map);
+    service.getDetails(request, (place, status) => {
+      if (status === placesLib.PlacesServiceStatus.OK) {
+        console.log("place...", place);
+        setState({
+          trail: place,
+        });
+        setLoading(false);
+      }
+    });
+  }, [placesLib, map]);
 
-  const handleMarkerClick = (marker) => {
-    if (marker === advancedMarkerRef.current) {
-      setInfoWindow(marker);
-    }
-  };
+  const [markerRef, marker] = useAdvancedMarkerRef();
+
+  const [infoWindowShown, setInfoWindowShown] = useState(false);
+
+  const handleMarkerClick = useCallback(
+    () => setInfoWindowShown((isShown) => !isShown),
+    []
+  );
+
+  const handleClose = useCallback(() => setInfoWindowShown(false), []);
 
   return (
     <div>
@@ -82,42 +76,52 @@ export default function Trail() {
         <div>
           <h1>{trail.name}</h1>
           <p>{trail.description}</p>
-          <APIProvider>
-            <Map
-              initialViewState={{
-                latitude: trail.latitude,
-                longitude: trail.longitude,
-                zoom: 10,
-              }}
-              width="100%"
-              height="500px"
-            >
-              {map && mapsLibrary && (
+          <Map
+            mapId={"map"}
+            style={{ width: "50vw", height: "50vh" }}
+            defaultCenter={center}
+            defaultZoom={10}
+            gestureHandling={"greedy"}
+            disableDefaultUI={true}
+          >
+            {/* diplay advanced marker and infoWindow */}
+            {map && (
+              <>
                 <AdvancedMarker
-                  ref={setAdvancedMarkerRef}
-                  map={map}
-                  mapsLibrary={mapsLibrary}
-                  latitude={trail.latitude}
-                  longitude={trail.longitude}
-                  onClick={handleMarkerClick}
-                >
-                  {infoWindow && (
-                    <InfoWindow
-                      anchor={infoWindow}
-                      onCloseClick={() => setInfoWindow(null)}
-                    >
-                      <div>
-                        <h2>{trail.name}</h2>
-                        <p>{trail.description}</p>
-                      </div>
-                    </InfoWindow>
-                  )}
-                </AdvancedMarker>
-              )}
-            </Map>
-          </APIProvider>
+                  key={trail.placeId}
+                  position={trail.location}
+                  title={trail.name}
+                  onClick={() => {
+                    console.log("clicked on marker", state.trail);
+                    handleMarkerClick();
+                  }}
+                  ref={markerRef}
+                />
+                {infoWindowShown && (
+                  <InfoWindow
+                    anchor={marker}
+                    onCloseClick={handleClose}
+                    options={{ maxWidth: 300 }}
+                  >
+                    <div>
+                      <h1>{state.trail.name}</h1>
+                      <p>{trail.description}</p>
+                    </div>
+                  </InfoWindow>
+                )}
+              </>
+            )}
+          </Map>
         </div>
       )}
     </div>
+  );
+};
+
+export default function Trail() {
+  return (
+    <APIProvider apiKey={apiKey}>
+      <CustomMap />
+    </APIProvider>
   );
 }

@@ -8,6 +8,8 @@ import { fetchWeather } from "../utils/API/openWeatherMap";
 
 import { fetchHikingTrails } from "../utils/API/googleMaps";
 
+import TrailsList from "../components/TrailsList";
+
 const Home = () => {
   // use state to store the city name
   const [city, setCity] = useState("");
@@ -26,6 +28,7 @@ const Home = () => {
 
   //  use effect to keep location in sync with google maps
   useEffect(() => {
+    console.log("hello ....");
     if (newLat && newLng) {
       fetchHikingTrails(setTrails, setLoading, setError, newLat, newLng);
     }
@@ -33,11 +36,11 @@ const Home = () => {
 
   // create test trail
   const trail = {
-    placeId: "ChIJrTLr-GyuEmsRBfy61i59si0",
+    placeId: "ChIJ88_pHgHsa4cR9lKp4yqutgQ",
     latitude: 37.7749295,
     longitude: -122.4194155,
-    name: "San Francisco",
-    description: "San Francisco is a city in California, USA",
+    name: "Enchanted Mesa Trail",
+    description: "Enchanted Mesa Trail is a trail in Colorado, USA",
   };
 
   return (
@@ -101,14 +104,7 @@ const Home = () => {
         {loading ? (
           <div>Loading...</div>
         ) : (
-          trails &&
-          trails.map((trail, index) => (
-            <div key={index}>
-              <p>{trail.name}</p>
-              <p>{trail.rating}</p>
-              <p>{trail.address}</p>
-            </div>
-          ))
+          trails && <TrailsList trails={trails} />
         )}
         {/* test trail */}
         <div>

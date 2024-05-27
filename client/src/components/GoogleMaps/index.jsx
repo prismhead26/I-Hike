@@ -8,20 +8,19 @@
 //     InfoWindow,
 //     useAdvancedMarkerRef,
 //   } from "@vis.gl/react-google-maps";
+
+import { useMap, useMapsLibrary } from "@vis.gl/react-google-maps";
+import { useEffect } from "react";
+
 //   import { useCallback, useEffect, useState } from "react";
 // import { useCallback } from "react";
-
-// import {
-//   useMap,
-//   useMapsLibrary,
-// } from "@vis.gl/react-google-maps";
 
 // import { useEffect, useState } from "react";
 
 const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 
 // create fetchHikingTrails function
-export const fetchHikingTrails = async (
+const fetchHikingTrails = async (
   setTrails,
   setLoading,
   setError,
@@ -34,38 +33,65 @@ export const fetchHikingTrails = async (
 
   console.log("newLat...", newLat);
   console.log("newLng...", newLng);
-  try {
-    // Fetch hiking trails data using Google Maps API
-    // set mode to no-cors to avoid CORS error
-    const hikingTrailsResponse = await fetch(
-      `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+near+me&location=${newLat},${newLng}&radius=500&type=hiking_area&region=us&key=${apiKey}`,
-      //   `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+near+me&location=40,-105&radius=500&type=hiking_area&region=us&key=AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA`,
-      {
-        mode: "no-cors",
+  // try {
+  //   // Fetch hiking trails data using Google Maps API
+  //   // set mode to no-cors to avoid CORS error
+  //   const hikingTrailsResponse = await fetch(
+  //     `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+near+me&location=${newLat},${newLng}&radius=500&type=hiking_area&region=us&key=${apiKey}`,
+  //     //   `https://maps.googleapis.com/maps/api/place/textsearch/json?query=hiking+trails+near+me&location=40,-105&radius=500&type=hiking_area&region=us&key=AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA`,
+  //     {
+  //       mode: "no-cors",
+  //     }
+  //   );
+
+  //   const hikingTrailsData = await hikingTrailsResponse.text();
+  //   console.log("hikingTrailsResponse...", hikingTrailsResponse);
+
+  //   // Map the data
+  //   if (!hikingTrailsData.ok) {
+  //     throw new Error("Failed to fetch hiking trails data");
+  //   }
+  //   const trails = hikingTrailsData.results.map((trail) => ({
+  //     name: trail.name,
+  //     location: trail.geometry.location,
+  //     rating: trail.rating,
+  //     address: trail.formatted_address,
+  //   }));
+
+  //   setTrails(trails);
+  // } catch (error) {
+  //   console.error("Error fetching data:", error);
+  //   setError(error.message);
+  // } finally {
+  //   setLoading(false);
+  // }
+
+  const map = useMap();
+  const placesLib = useMapsLibrary("places");
+
+  useEffect(() => {
+    if (!placesLib || !map) return;
+
+    const request = {
+      query: "Hiking trails near me",
+      location: { lat: newLat, lng: newLng },
+      radius: 500,
+      type: "hiking_area",
+      region: "us",
+    };
+
+    const svc = new placesLib.PlacesService(map);
+    console.log("svc....", svc);
+
+    svc.textSearch(request, (results, status) => {
+      console.log("results: ", results);
+      console.log("status is", status);
+
+      for (var i = 0; i < results.length; i++) {
+        setTrails(results[i]);
       }
-    );
-
-    const hikingTrailsData = hikingTrailsResponse;
-    console.log("hikingTrailsResponse...", hikingTrailsResponse);
-
-    // Map the data
-    if (!hikingTrailsData.ok) {
-      throw new Error("Failed to fetch hiking trails data");
-    }
-    const trails = hikingTrailsData.results.map((trail) => ({
-      name: trail.name,
-      location: trail.geometry.location,
-      rating: trail.rating,
-      address: trail.formatted_address,
-    }));
-
-    setTrails(trails);
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    setError(error.message);
-  } finally {
-    setLoading(false);
-  }
+    });
+  }, [placesLib, map]);
 };
 
 // const CustomMap = () => {
@@ -197,3 +223,5 @@ export const fetchHikingTrails = async (
 //       </APIProvider>
 //     );
 //   }
+
+export { fetchHikingTrails };
