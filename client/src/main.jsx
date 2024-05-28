@@ -1,15 +1,17 @@
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom/dist";
 import "./index.css";
+import "./App.css";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import App from "./App.jsx";
+import App from "./DarkMode";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
-// import myHikes from "./pages/myHikes";
+import Trail from "./pages/Trail";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "/myHikes/:profileId",
         element: <Profile />,
+      },
+      {
+        path: "/trail/:trailId",
+        element: <Trail />,
       },
     ],
   },
