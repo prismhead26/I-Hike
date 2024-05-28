@@ -19,8 +19,13 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   // use state to store error
   const [error, setError] = useState(null);
+  const [newCoords, setNewCoords] = useState({
+    lat: 39.997246,
+    lng: -105.280243,
+  });
 
-  const { trails, googleMap } = useGoogleMaps();
+  const { trails, googleMap } = useGoogleMaps(newCoords);
+  console.log("trails...", trails);
 
   //  use effect to keep location in sync with google maps
   // useEffect(() => {
@@ -57,17 +62,17 @@ const Home = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => {
+            onClick={async () => {
               console.log("button clicked");
               try {
-                fetchWeather(city, setWeather, setLoading, setError);
-                const { coords } = fetchWeather(
+                const { coords } = await fetchWeather(
                   city,
                   setWeather,
                   setLoading,
-                  setError
+                  setError,
+                  setNewCoords
                 );
-                console.log("coords...", coords);
+                // console.log("coords...", coords);
               } catch (error) {
                 console.error("Error fetching data:", error);
                 setError(error.message);
@@ -118,7 +123,7 @@ const Home = () => {
           <h1>{trail.name}</h1>
           <p>{trail.description}</p>
           {/* pass in trail data to link to access on trails page */}
-          <Link to={{ pathname: `/trail/${trail.placeId}`, state: { trail } }}>
+          <Link to={{ pathname: `/trail/${trail.placeId}`, state: trail }}>
             <Button variant="contained" color="primary">
               View Trail
             </Button>

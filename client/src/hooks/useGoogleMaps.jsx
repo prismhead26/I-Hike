@@ -10,12 +10,13 @@ import {
 import { useCallback, useEffect, useState } from "react";
 
 // api key for google maps
-const key = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
+const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 
 // fetch hiking trails function
-export const useGoogleMaps = async () => {
+export const useGoogleMaps = async (coords) => {
+  console.log("coords...", coords);
   const initState = {
-    location: { lat: 39.997246, lng: -105.280243 },
+    location: { lat: 39.997246, lng: -105.280243 } | coords,
     radius: 500,
     query: "Hiking trails near me",
     type: "hiking_area",
@@ -35,7 +36,7 @@ export const useGoogleMaps = async () => {
 
   // retrive the location as param and fetch the hiking trails near that location using useMapsLibrary
   // add api key to useMap
-  const map = useMap(key);
+  const map = useMap();
   const placesLib = useMapsLibrary();
 
   useEffect(() => {
@@ -56,6 +57,7 @@ export const useGoogleMaps = async () => {
           setTrails(trails);
           setGoogleMap((prevState) => {
             console.log("prevState...", prevState);
+            console.log("trails... useMaps", trails);
             return {
               ...prevState,
               location: {

@@ -14,9 +14,11 @@ import { useLocation } from "react-router-dom";
 const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 
 const CustomMap = () => {
-  // retrieve the trail from the state that was passed
-  const trailData = useLocation().state;
-  console.log("trailData...", trailData);
+  let trailCoords = [];
+  // retrieve the trail from the state that was passed from link in Home.jsx
+  const location = useLocation();
+  const { state: props } = location;
+  console.log("props...", props);
 
   //   const [trail, setTrail] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -55,9 +57,13 @@ const CustomMap = () => {
     service.getDetails(request, (place, status) => {
       if (status === placesLib.PlacesServiceStatus.OK) {
         console.log("place...", place);
+        console.log("place location...", place.geometry.location.lat());
+        console.log("place location...", place.geometry.location.lng());
+        trailCoords.push(place);
         setState({
-          trail: place,
+          trail: trailCoords,
         });
+        console.log("state...", state);
         setLoading(false);
       }
     });
