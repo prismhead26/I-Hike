@@ -5,7 +5,7 @@ import "./App.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import App from "./DarkMode";
+import App from "./App";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";

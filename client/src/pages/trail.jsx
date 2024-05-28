@@ -13,12 +13,12 @@ import { useLocation } from "react-router-dom";
 // api key for google maps
 const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 
-const CustomMap = () => {
+const CustomMap = (props) => {
   let trailCoords = [];
   // retrieve the trail from the state that was passed from link in Home.jsx
   const location = useLocation();
-  const { state: props } = location;
-  console.log("props...", props);
+  const stateData = location.state;
+  console.log("stateData...", stateData);
 
   //   const [trail, setTrail] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ const CustomMap = () => {
 
   const [state, setState] = useState({
     center: { lat: trail.latitude, lng: trail.longitude },
-    trail: [],
+    coordsResult: [],
   });
 
   const center = trail.location;
@@ -60,9 +60,8 @@ const CustomMap = () => {
         console.log("place location...", place.geometry.location.lat());
         console.log("place location...", place.geometry.location.lng());
         trailCoords.push(place);
-        setState({
-          trail: trailCoords,
-        });
+        console.log("trailCoords...", trailCoords);
+        setState({ ...state, coordsResult: trailCoords });
         console.log("state...", state);
         setLoading(false);
       }

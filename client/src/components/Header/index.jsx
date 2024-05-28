@@ -11,7 +11,7 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 // import { ColorModeContext } from "../../DarkMode";
 const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
-const Header = () => {
+const Header = ({ toggleBackgroundColor }) => {
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -20,7 +20,6 @@ const Header = () => {
   const currentPage = useLocation().pathname;
 
   const theme = useTheme();
-  const colorMode = React.useContext(ColorModeContext);
 
   return (
     <header>
@@ -54,7 +53,7 @@ const Header = () => {
                 </b>
                 <IconButton
                   sx={{ ml: 1 }}
-                  onClick={colorMode.toggleColorMode}
+                  onClick={toggleBackgroundColor}
                   color="inherit"
                 >
                   {theme.palette.mode === "dark" ? (

@@ -32,7 +32,13 @@ import { useMediaQuery } from "@mui/material";
 // }
 
 export default function DarkMode() {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const [mode, setMode] = React.useState("light");
+
+  React.useEffect(() => {
+    setMode(prefersDarkMode ? "dark" : "light");
+  }, [prefersDarkMode]);
+
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
