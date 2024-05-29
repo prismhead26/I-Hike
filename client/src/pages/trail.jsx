@@ -36,7 +36,17 @@ const CustomMap = () => {
       {trail && trail.location && (
         <div>
           <h1>{trail.name}</h1>
-          <p>{trail.description}</p>
+          <p>{trail.formatted_address}</p>
+          <a
+            className="btn btn-primary mb-3"
+            // add a link to google maps directions to the trail using the trail placeId
+            href={`https://www.google.com/maps/dir/?api=1&destination=${trail.location.lat},${trail.location.lng}`}
+            // href={`https://www.google.com/maps/search/?api=1&query=${trail.name}`}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Google Directions to {trail.name}
+          </a>
           <Map
             mapId={"map"}
             style={{ width: "50vw", height: "50vh" }}
