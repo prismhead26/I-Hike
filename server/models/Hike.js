@@ -1,5 +1,16 @@
 const { Schema, model } = require("mongoose");
 
+const locationSchema = new Schema({
+  lat: {
+    type: Number,
+    required: true,
+  },
+  lng: {
+    type: Number,
+    required: true,
+  },
+});
+
 const hikeSchema = new Schema({
   name: {
     type: String,
@@ -7,20 +18,16 @@ const hikeSchema = new Schema({
     unique: true,
     trim: true,
   },
-  location: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  distance: {
+  location: locationSchema,
+  placeId: {
     type: String,
     required: true,
   },
-  difficulty: {
+  rating: {
     type: String,
     required: true,
   },
-  image: {
+  formatted_address: {
     type: String,
     required: true,
   },

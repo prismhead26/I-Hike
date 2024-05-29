@@ -1,4 +1,4 @@
-const { Profile } = require("../models");
+const { Profile, Hike } = require("../models");
 const { signToken, AuthenticationError } = require("../utils/auth");
 const mongoose = require("mongoose"); // Import mongoose
 
@@ -51,13 +51,29 @@ const resolvers = {
     },
 
     // Add a third argument to the resolver to access data in our `context`
-    addFavorite: async (parent, { hikeId }, context) => {
+    addFavorite: async (parent, args, context) => {
       if (context.user) {
-        hikeId = mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
+        const newHike = await Hike.create(args);
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
           {
-            $addToSet: { favorite_hikes: hikeId },
+            $addToSet: { favorite_hikes: newHike.placeId },
+          },
+          {
+            new: true,
+            runValidators: true,
+          }
+        );
+      }
+      throw new AuthenticationError();
+    },
+    addFuture: async (parent, args, context) => {
+      if (context.user) {
+        const newHike = await Hike.create(args);
+        return Profile.findOneAndUpdate(
+          { _id: context.user._id },
+          {
+            $addToSet: { future_hikes: newHike.placeId },
           },
           {
             new: true,
@@ -77,39 +93,26 @@ const resolvers = {
     // Make it so a logged-in user can only remove a skill from their own profile
     removeFavorite: async (parent, { hikeId }, context) => {
       if (context.user) {
-        hikeId = new mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
-        return Profile.findOneAndUpdate(
+        hikeId = mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
+        await Profile.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { favorite_hikes: hikeId } },
           { new: true }
         );
+        await Hike.findOneAndDelete({ placeId: hikeId });
       }
       throw new AuthenticationError();
     },
-    addFuture: async (parent, { hikeId }, context) => {
-      if (context.user) {
-        hikeId = new mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          {
-            $addToSet: { future_hikes: hikeId },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw new AuthenticationError();
-    },
+
     removeFuture: async (parent, { hikeId }, context) => {
       if (context.user) {
         hikeId = mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
-        return Profile.findOneAndUpdate(
+        await Profile.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { future_hikes: hikeId } },
           { new: true }
         );
+        await Hike.findOneAndDelete({ placeId: hikeId });
       }
       throw new AuthenticationError();
     },

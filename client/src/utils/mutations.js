@@ -1,17 +1,5 @@
 import { gql } from "@apollo/client";
 
-export const ADD_PROFILE = gql`
-  mutation addProfile($name: String!, $email: String!, $password: String!) {
-    addProfile(name: $name, email: $email, password: $password) {
-      token
-      profile {
-        _id
-        name
-      }
-    }
-  }
-`;
-
 export const LOGIN_USER = gql`
   mutation login($email: String!, $password: String!) {
     login(email: $email, password: $password) {
@@ -24,12 +12,37 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const ADD_PROFILE = gql`
+  mutation addProfile($name: String!, $email: String!, $password: String!) {
+    addProfile(name: $name, email: $email, password: $password) {
+      token
+      profile {
+        _id
+        name
+      }
+    }
+  }
+`;
+
 export const ADD_FAVORITE = gql`
-  mutation addFavorite($hikeId: ID!) {
-    addFavorite(hikeId: $hikeId) {
+  mutation addFavorite($hike: Hike) {
+    addFavorite(hike: $hike) {
       _id
       name
       favorite_hikes {
+        _id
+        name
+      }
+    }
+  }
+`;
+
+export const ADD_FUTURE = gql`
+  mutation addFuture($hike: Hike) {
+    addFuture(hike: $hike) {
+      _id
+      name
+      future_hikes {
         _id
         name
       }
@@ -43,19 +56,6 @@ export const REMOVE_FAVORITE = gql`
       _id
       name
       favorite_hikes {
-        _id
-        name
-      }
-    }
-  }
-`;
-
-export const ADD_FUTURE = gql`
-  mutation addFuture($hikeId: ID!) {
-    addFuture(hikeId: $hikeId) {
-      _id
-      name
-      future_hikes {
         _id
         name
       }

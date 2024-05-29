@@ -7,15 +7,19 @@ const typeDefs = `
     favorite_hikes: [Hike]
     future_hikes: [Hike]
   }
+
+  type Location {
+    lat: Int
+    lng: Int
+  }
   
   type Hike {
     _id: ID
     name: String
-    location: String
-    distance: Float
-    difficulty: String
-    description: String
-    image: String
+    location: Location
+    placeId: String
+    rating: String
+    formatted_address: String
   }
 
   type Auth {
@@ -35,9 +39,9 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
 
     removeProfile: Profile
-    addFavorite(hikeId: ID!): Profile
+    addFavorite(hike: Hike): Profile
     removeFavorite(hikeId: ID!): Profile
-    addFuture(hikeId: ID!): Profile
+    addFuture(hike: Hike): Profile
     removeFuture(hikeId: ID!): Profile
   }
 `;
