@@ -2,7 +2,13 @@
 
 const apiKey = "1659a8c1977a91b5deedda1d9206f21e";
 
-export const fetchWeather = async (city, setWeather, setLoading, setError) => {
+export const fetchWeather = async (
+  city,
+  setWeather,
+  setLoading,
+  setError,
+  setNewCoords
+) => {
   setLoading(true);
   setError(null); // Clear previous errors
   setWeather(null); // Clear previous weather data
@@ -43,7 +49,7 @@ export const fetchWeather = async (city, setWeather, setLoading, setError) => {
   } finally {
     setLoading(false);
   }
-
+  setNewCoords(coords);
   return {
     coords,
   };

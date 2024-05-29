@@ -14,54 +14,11 @@ import { useLocation } from "react-router-dom";
 const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 
 const CustomMap = () => {
-  // retrieve the trail from the state that was passed
-  const trailData = useLocation().state;
-  console.log("trailData...", trailData);
-
-  //   const [trail, setTrail] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  // retrieve the trail from the state that was passed from link in Home.jsx
+  const trail = useLocation().state?.trail;
+  console.log("trail State...", trail);
 
   const map = useMap();
-  const placesLib = useMapsLibrary("places");
-
-  //   create test trail
-  const trail = {
-    placeId: "ChIJ88_pHgHsa4cR9lKp4yqutgQ",
-    latitude: 39.997246,
-    longitude: -105.280243,
-    location: { lat: 39.997246, lng: -105.280243 },
-    name: "Enchanted Mesa Trail",
-    description: "Enchanted Mesa Trail is a trail in Colorado, USA",
-  };
-
-  const [state, setState] = useState({
-    center: { lat: trail.latitude, lng: trail.longitude },
-    trail: [],
-  });
-
-  const center = trail.location;
-
-  useEffect(() => {
-    if (!placesLib || !map) return;
-
-    //  display the trail on the map from placeId
-    const request = {
-      placeId: trail.placeId,
-      fields: ["name", "geometry", "formatted_address"],
-    };
-
-    const service = new placesLib.PlacesService(map);
-    service.getDetails(request, (place, status) => {
-      if (status === placesLib.PlacesServiceStatus.OK) {
-        console.log("place...", place);
-        setState({
-          trail: place,
-        });
-        setLoading(false);
-      }
-    });
-  }, [placesLib, map]);
 
   const [markerRef, marker] = useAdvancedMarkerRef();
 
@@ -76,16 +33,14 @@ const CustomMap = () => {
 
   return (
     <div>
-      {loading && <div>Loading...</div>}
-      {error && <div>{error.message}</div>}
-      {trail && (
+      {trail && trail.location && (
         <div>
           <h1>{trail.name}</h1>
           <p>{trail.description}</p>
           <Map
             mapId={"map"}
             style={{ width: "50vw", height: "50vh" }}
-            defaultCenter={center}
+            defaultCenter={trail.location}
             defaultZoom={10}
             gestureHandling={"greedy"}
             disableDefaultUI={true}
@@ -98,7 +53,7 @@ const CustomMap = () => {
                   position={trail.location}
                   title={trail.name}
                   onClick={() => {
-                    console.log("clicked on marker", state.trail);
+                    console.log("clicked on marker state.coordsResult", trail);
                     handleMarkerClick();
                   }}
                   ref={markerRef}
@@ -110,8 +65,8 @@ const CustomMap = () => {
                     options={{ maxWidth: 300 }}
                   >
                     <div>
-                      <h1>{state.trail.name}</h1>
-                      <p>{trail.description}</p>
+                      <h1>{trail.name}</h1>
+                      <p>{trail.formatted_address}</p>
                     </div>
                   </InfoWindow>
                 )}

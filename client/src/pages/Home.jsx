@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Input } from "@mui/base";
 import { Button } from "@mui/base";
 
-import { Link } from "react-router-dom";
-
 import { fetchWeather } from "../utils/API/openWeatherMap";
 
-import { useGoogleMaps } from "../hooks/useGoogleMaps";
+// import { useGoogleMaps } from "../hooks/useGoogleMaps";
 
-import TrailsList from "../components/TrailsList";
+// import TrailsList from "../components/TrailsList";
+
+import TrailsMap from "../utils/API/googleMaps";
 
 const Home = () => {
   // use state to store the city name
@@ -20,29 +20,10 @@ const Home = () => {
   // use state to store error
   const [error, setError] = useState(null);
 
-  const { trails, googleMap } = useGoogleMaps();
-
-  //  use effect to keep location in sync with google maps
-  // useEffect(() => {
-  //   console.log("hello ....");
-  //   const loadTrails = () => {
-  //     if (newLat && newLng) {
-  //       FetchHikingTrails(setTrails, setLoading, setError, newLat, newLng);
-  //     }
-  //   };
-
-  //   loadTrails();
-  // }, [newLat, newLng]);
-
-  // create test trail
-  const trail = {
-    placeId: "ChIJ88_pHgHsa4cR9lKp4yqutgQ",
-    latitude: 39.997246,
-    longitude: -105.280243,
-    location: { lat: 39.997246, lng: -105.280243 },
-    name: "Enchanted Mesa Trail",
-    description: "Enchanted Mesa Trail is a trail in Colorado, USA",
-  };
+  const [newCoords, setNewCoords] = useState({
+    lat: 39.997246,
+    lng: -105.280243,
+  });
 
   return (
     <main>
@@ -57,17 +38,17 @@ const Home = () => {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => {
+            onClick={async () => {
               console.log("button clicked");
               try {
-                fetchWeather(city, setWeather, setLoading, setError);
-                const { coords } = fetchWeather(
+                await fetchWeather(
                   city,
                   setWeather,
                   setLoading,
-                  setError
+                  setError,
+                  setNewCoords
                 );
-                console.log("coords...", coords);
+                // console.log("coords...", coords);
               } catch (error) {
                 console.error("Error fetching data:", error);
                 setError(error.message);
@@ -105,25 +86,10 @@ const Home = () => {
                   />
                 </div>
               </div>
+              <TrailsMap coords={newCoords} />
             </div>
           )
         )}
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          trails && <TrailsList trails={trails} />
-        )}
-        {/* test trail */}
-        <div>
-          <h1>{trail.name}</h1>
-          <p>{trail.description}</p>
-          {/* pass in trail data to link to access on trails page */}
-          <Link to={{ pathname: `/trail/${trail.placeId}`, state: { trail } }}>
-            <Button variant="contained" color="primary">
-              View Trail
-            </Button>
-          </Link>
-        </div>
       </div>
     </main>
   );
