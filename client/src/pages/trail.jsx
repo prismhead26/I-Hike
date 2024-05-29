@@ -8,6 +8,9 @@ import {
 } from "@vis.gl/react-google-maps";
 import { useCallback, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useMutation } from '@apollo/client';
+import { ADD_FAVORITE, ADD_FUTURE } from '../utils/mutations';
+//import { getHikeIdFromPlaceId } from '../../../server/utils/hikeUtils';
 
 // api key for google maps
 const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
@@ -89,10 +92,60 @@ const CustomMap = () => {
   );
 };
 
-export default function Trail() {
+const Trail = () => {
+  const trail = useLocation().state?.trail;
+
+  const [addFavoriteHike] = useMutation(ADD_FAVORITE);
+  const [addFutureHike] = useMutation(ADD_FUTURE);
+
+
+const handleAddFavorite = async () => {
+  try {
+    await addFavoriteHike({ variables: { hikeId: trail.placeId } });
+  } catch (e) {
+    console.error('Error adding to favorite hikes:', e.message);
+  }
+};
+
+const handleAddFuture = async () => {
+  try {
+    await addFutureHike({ variables: { hikeId: trail.placeId } });
+  } catch (e) {
+    console.error('Error adding to future hikes:', e.message);
+  }
+};
+
+// const handleAddFavorite = async () => {
+//   try {
+//     // Convert placeId to MongoDB _id
+//     const hikeId = await getHikeIdFromPlaceId(trail.placeId);
+//     await addFavoriteHike({ variables: { hikeId } });
+//   } catch (e) {
+//     console.error('Error adding to favorite hikes:', e.message);
+//   }
+// };
+
+// const handleAddFuture = async () => {
+//   try {
+//     // Convert placeId to MongoDB _id
+//     const hikeId = await getHikeIdFromPlaceId(trail.placeId);
+//     await addFutureHike({ variables: { hikeId } });
+//   } catch (e) {
+//     console.error('Error adding to future hikes:', e.message);
+//   }
+// };
+
   return (
     <APIProvider apiKey={apiKey}>
       <CustomMap />
+      {trail && (
+        <div>
+          <button onClick={handleAddFavorite}>Add to Favorite Hikes</button>
+          <button onClick={handleAddFuture}>Add to Future Hikes</button>
+        </div>
+      )}
     </APIProvider>
   );
-}
+};
+
+export default Trail;
