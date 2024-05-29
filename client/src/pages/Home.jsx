@@ -4,10 +4,6 @@ import { Button } from "@mui/base";
 
 import { fetchWeather } from "../utils/API/openWeatherMap";
 
-// import { useGoogleMaps } from "../hooks/useGoogleMaps";
-
-// import TrailsList from "../components/TrailsList";
-
 import TrailsMap from "../utils/API/googleMaps";
 
 const Home = () => {
@@ -19,6 +15,8 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   // use state to store error
   const [error, setError] = useState(null);
+
+  const [gearRecommendation, setGearRecommendation] = useState("");
 
   const [newCoords, setNewCoords] = useState({
     lat: 39.997246,
@@ -46,7 +44,8 @@ const Home = () => {
                   setWeather,
                   setLoading,
                   setError,
-                  setNewCoords
+                  setNewCoords,
+                  setGearRecommendation
                 );
                 // console.log("coords...", coords);
               } catch (error) {
@@ -86,6 +85,7 @@ const Home = () => {
                   />
                 </div>
               </div>
+              <section>Gear Recommendation: {gearRecommendation}</section>
               <TrailsMap coords={newCoords} />
             </div>
           )

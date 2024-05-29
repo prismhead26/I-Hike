@@ -6,7 +6,7 @@ import {
   AdvancedMarker,
   InfoWindow,
 } from "@vis.gl/react-google-maps";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // api key for google maps
@@ -19,15 +19,19 @@ const Markers = ({ coords }) => {
   // use state to store the trails
   const [trails, setTrails] = useState(null);
 
-  // retrive the location as param and fetch the hiking trails near that location using useMapsLibrary
+  //  create an instance of the map
   const map = useMap();
+  // retrive the location as param and fetch the hiking trails near that location using useMapsLibrary
+
   const placesLib = useMapsLibrary("places");
 
+  // fetch hiking trails near the location inside the useEffect hook
   useEffect(() => {
     if (!placesLib || !map) return;
 
     console.log("coords...", coords);
 
+    // create a request object to fetch hiking trails near the location
     const request = {
       location: coords,
       radius: 500,
@@ -36,6 +40,7 @@ const Markers = ({ coords }) => {
       region: "us",
     };
 
+    // create an instance of the PlacesService and fetch the hiking trails using the textSearch method
     const service = new placesLib.PlacesService(map);
     service.textSearch(request, (results, status) => {
       console.log("results...", results);
@@ -58,10 +63,11 @@ const Markers = ({ coords }) => {
     });
   }, [map, placesLib]);
 
+  // use state to store the infoWindow state
   const [infoWindowShown, setInfoWindowShown] = useState(false);
-
+  // use state to store the selected trail
   const [selectedTrail, setSelectedTrail] = useState({});
-
+  // handle marker click event to show the infoWindow on the corresponding marker
   const handleMarkerClick = (trail) => {
     setInfoWindowShown((isShown) => !isShown);
     setSelectedTrail(trail);
@@ -70,11 +76,12 @@ const Markers = ({ coords }) => {
   const handleClose = useCallback(() => setInfoWindowShown(false), []);
 
   return (
-    // display list of trails with a Link to the trail page for each trail
+    // display list of trails with a Link to the trail page for each trail inside the infoWindow
+    // add advanced marker to display all trails on the map
     <>
       {trails &&
         trails.map((trail) => (
-          <>
+          <Fragment key={trail.placeId}>
             <AdvancedMarker
               key={trail.placeId}
               position={trail.location}
@@ -84,7 +91,7 @@ const Markers = ({ coords }) => {
                 handleMarkerClick(trail);
               }}
             />
-          </>
+          </Fragment>
         ))}
       {infoWindowShown && (
         <InfoWindow
@@ -117,7 +124,7 @@ const Markers = ({ coords }) => {
 
 export default function TrailsMap({ coords }) {
   return (
-    // add advanced marker to display all trails on the map
+    // wrap the Map component inside the APIProvider component and pass the apiKey as prop
     <APIProvider apiKey={apiKey}>
       <Map
         mapId={"trailsMap"}
@@ -127,7 +134,7 @@ export default function TrailsMap({ coords }) {
         gestureHandling={"greedy"}
         disableDefaultUI={true}
       >
-        <Markers coords={coords} />
+        <Markers coords={coords} key={coords} />
       </Map>
     </APIProvider>
   );
