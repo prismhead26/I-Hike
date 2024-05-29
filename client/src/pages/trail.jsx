@@ -2,12 +2,11 @@ import {
   APIProvider,
   Map,
   useMap,
-  useMapsLibrary,
   AdvancedMarker,
   InfoWindow,
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 // api key for google maps
@@ -20,6 +19,7 @@ const CustomMap = () => {
 
   const map = useMap();
 
+  // create a reference for the marker and infoWindow
   const [markerRef, marker] = useAdvancedMarkerRef();
 
   const [infoWindowShown, setInfoWindowShown] = useState(false);

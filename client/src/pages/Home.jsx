@@ -4,10 +4,6 @@ import { Button } from "@mui/base";
 
 import { fetchWeather } from "../utils/API/openWeatherMap";
 
-// import { useGoogleMaps } from "../hooks/useGoogleMaps";
-
-// import TrailsList from "../components/TrailsList";
-
 import TrailsMap from "../utils/API/googleMaps";
 
 const Home = () => {
