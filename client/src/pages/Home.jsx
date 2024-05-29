@@ -16,6 +16,8 @@ const Home = () => {
   // use state to store error
   const [error, setError] = useState(null);
 
+  const [gearRecommendation, setGearRecommendation] = useState("");
+
   const [newCoords, setNewCoords] = useState({
     lat: 39.997246,
     lng: -105.280243,
@@ -42,7 +44,8 @@ const Home = () => {
                   setWeather,
                   setLoading,
                   setError,
-                  setNewCoords
+                  setNewCoords,
+                  setGearRecommendation
                 );
                 // console.log("coords...", coords);
               } catch (error) {
@@ -82,6 +85,7 @@ const Home = () => {
                   />
                 </div>
               </div>
+              <section>Gear Recommendation: {gearRecommendation}</section>
               <TrailsMap coords={newCoords} />
             </div>
           )
