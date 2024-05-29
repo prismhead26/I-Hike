@@ -2,13 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Input } from "@mui/base";
 import { Button } from "@mui/base";
 
-import { Link } from "react-router-dom";
-
 import { fetchWeather } from "../utils/API/openWeatherMap";
 
 // import { useGoogleMaps } from "../hooks/useGoogleMaps";
 
-import TrailsList from "../components/TrailsList";
+// import TrailsList from "../components/TrailsList";
 
 import TrailsMap from "../utils/API/googleMaps";
 
@@ -21,38 +19,11 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   // use state to store error
   const [error, setError] = useState(null);
-  // use state to store the trails
-  const [trails, setTrails] = useState(null);
 
   const [newCoords, setNewCoords] = useState({
     lat: 39.997246,
     lng: -105.280243,
   });
-
-  // const { trails, googleMap } = useGoogleMaps(newCoords);
-  // console.log("trails...", trails);
-
-  //  use effect to keep location in sync with google maps
-  // useEffect(() => {
-  //   console.log("hello ....");
-  //   const loadTrails = () => {
-  //     if (newLat && newLng) {
-  //       FetchHikingTrails(setTrails, setLoading, setError, newLat, newLng);
-  //     }
-  //   };
-
-  //   loadTrails();
-  // }, [newLat, newLng]);
-
-  // create test trail
-  const trailState = {
-    placeId: "ChIJ88_pHgHsa4cR9lKp4yqutgQ",
-    latitude: 39.997246,
-    longitude: -105.280243,
-    location: { lat: 39.997246, lng: -105.280243 },
-    name: "Enchanted Mesa Trail",
-    description: "Enchanted Mesa Trail is a trail in Colorado, USA",
-  };
 
   return (
     <main>
@@ -115,34 +86,10 @@ const Home = () => {
                   />
                 </div>
               </div>
+              <TrailsMap coords={newCoords} />
             </div>
-          ) && (
-            <TrailsMap
-              setTrails={setTrails}
-              setLoading={setLoading}
-              setError={setError}
-              coords={newCoords}
-            />
           )
         )}
-        {loading ? (
-          <div>Loading...</div>
-        ) : (
-          trails && <TrailsList trails={trails} />
-        )}
-        {/* test trail */}
-        <div>
-          <h1>{trailState.name}</h1>
-          <p>{trailState.description}</p>
-          {/* pass in trail data to link to access on trails page */}
-          <Link
-            to={{ pathname: `/trail/${trailState.placeId}`, state: trailState }}
-          >
-            <Button variant="contained" color="primary">
-              View Trail
-            </Button>
-          </Link>
-        </div>
       </div>
     </main>
   );
