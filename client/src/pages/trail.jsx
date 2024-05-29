@@ -114,26 +114,6 @@ const Trail = () => {
     }
   };
 
-  // const handleAddFavorite = async () => {
-  //   try {
-  //     // Convert placeId to MongoDB _id
-  //     const hikeId = await getHikeIdFromPlaceId(trail.placeId);
-  //     await addFavoriteHike({ variables: { hikeId } });
-  //   } catch (e) {
-  //     console.error('Error adding to favorite hikes:', e.message);
-  //   }
-  // };
-
-  // const handleAddFuture = async () => {
-  //   try {
-  //     // Convert placeId to MongoDB _id
-  //     const hikeId = await getHikeIdFromPlaceId(trail.placeId);
-  //     await addFutureHike({ variables: { hikeId } });
-  //   } catch (e) {
-  //     console.error('Error adding to future hikes:', e.message);
-  //   }
-  // };
-
   return (
     <APIProvider apiKey={apiKey}>
       <CustomMap />

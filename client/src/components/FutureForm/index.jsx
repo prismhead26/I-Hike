@@ -29,17 +29,18 @@ const FutureForm = ({ future_hikes }) => {
           className="flex-row justify-center justify-space-between-md align-center"
           onSubmit={handleFormSubmit}
         >
-          {/* Display the future hikes and provide a way to select one */}
-          <select
-            value={selectedHikeId}
-            onChange={(event) => setSelectedHikeId(event.target.value)}
-          >
+          {/* map through the future_hikes array and list each hike by name as a Link and pas in placeId as to={pathname: `/trail/${hike.placeId}`} and state: {trail: hike} */}
+          <div className="col-12 col-lg-3">
             {future_hikes.map((hike) => (
-              <option key={hike} value={hike.id}>
+              <Link
+                to={`/trail/${hike.placeId}`}
+                key={hike._id}
+                state={{ trail: hike }}
+              >
                 {hike.name}
-              </option>
+              </Link>
             ))}
-          </select>
+          </div>
 
           <div className="col-12 col-lg-3">
             <button className="btn btn-info btn-block py-3" type="submit">

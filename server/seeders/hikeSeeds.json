@@ -1,51 +1,49 @@
 [
     {
-      "name": "Mount Everest",
-      "location": "Nepal",
-      "difficulty": "Extreme",
-      "distance": "29,032 feet",
-      "rating": "5 stars",
-      "image": "https://www.nationalgeographic.com/content/dam/adventure/photos/2019/11/26/everest-traffic/everest-traffic-01.adapt.1900.1.jpg"
+      "name": "Cherry Creek Hike/Bike Path",
+      "location": {"lat": 39.7183923, "lng": -104.9735328},
+      "placeId": "ChIJP1Njcuh-bIcRpDUcqm8COYA",
+      "rating": 4.6,
+      "formatted_address": "N Downing St, Denver, CO 80218"
     },
     {
-      "name": "Mount Kilimanjaro",
-      "location": "Tanzania",
-      "difficulty": "Extreme",
-      "distance": "19,341 feet",
-      "rating": "5 stars",
-      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/kilimanjaro/kilimanjaro-7.adapt.1900.1.jpg"
+      "name": 
+      "Ralston Creek Trail",
+      "location": {"lat": 39.7997929, "lng": 
+      -105.0585962},
+      "placeId": "ChIJPwUfxdyHa4cROamgHcb3Ouk",
+      "rating": 4.6,
+      "formatted_address": "Ralston Creek,, Arvada, CO 80002"
     },
     {
-      "name": "Mount Fuji",
-      "location": "Japan",
-      "difficulty": "Extreme",
-      "distance": "12,389 feet",
-      "rating": "5 stars",
-      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/japan/mount-fuji/mount-fuji-1.adapt.1900.1.jpg"
+      "name": "Trail Head",
+      "location": {"lat": 39.7852636, "lng": 
+      -105.0740339},
+      "placeId": "ChIJi1n5z7WHa4cR9i59fOhhlGU",
+      "rating": 4.4,
+      "formatted_address": "Unnamed Road, Wheat Ridge, CO 80033"
     },
     {
-      "name": "Mount Rainier",
-      "location": "Washington",
-      "difficulty": "Extreme",
-      "distance": "14,411 feet",
-      "rating": "5 stars",
-      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/washington/mount-rainier/mount-rainier-1.adapt.1900.1.jpg"
+      "name": "Dahlia Trailhead",
+      "location": {"lat": 39.797194, "lng": -104.931151},
+      "placeId": "ChIJ-4xjvSV6bIcRiWfwBNOxOkk",
+      "rating": 4.1,
+      "formatted_address": "4900 S Sandcreek Dr, Commerce City, CO 80022"
     },
     {
-      "name": "Mount Whitney",
-      "location": "California",
-      "difficulty": "Extreme",
-      "distance": "14,505 feet",
-      "rating": "5 stars",
-      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/california/mount-whitney/mount-whitney-1.adapt.1900.1.jpg"
+      "name": "S Platte Trail Junction",
+      "location": {"lat": 39.7904395, "lng": -104.968819},
+      "placeId": "ChIJOYXfr6R5bIcR4nPzc6rCrIQ",
+      "rating": 4,
+      "formatted_address": 
+      "5184-5198 Race Ct, Denver, CO 80216"
     },
     {
-      "name": "Mount Elbrus",
-      "location": "Russia",
-      "difficulty": "Extreme",
-      "distance": "18,510 feet",
-      "rating": "5 stars",
-      "image": "https://www.nationalgeographic.com/content/dam/travel/2019-digital/russia/mount-elbrus/mount-elbrus-1.adapt.1900.1.jpg"
+      "name": "Sanderson Gulch",
+      "location": {"lat": 39.688986, "lng": -105.0137365},
+      "placeId": "ChIJwcYvbYR_bIcRnDv-lapGUFk",
+      "rating": 4.2,
+      "formatted_address": "Sanderson Gulch Trail, Denver, CO 80223"
     }
   ]
 
