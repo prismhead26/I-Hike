@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import FutureForm from "../components/FutureForm";
@@ -21,6 +21,7 @@ const Profile = () => {
 
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const profile = data?.me || data?.profile || {};
+  console.log("profile", profile.favorite_hikes);
 
   // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
   // if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {

@@ -18,12 +18,16 @@
 
 ## The Challenge:
 
-    The challenge is to create a MERN stack single-page application that works with real-world data to solve a real-world challenge, with a focus on data and user demand.
+The challenge is to create a MERN stack single-page application that works with real-world data to solve a real-world challenge, with a focus on data and user demand.
 
 ## User Story
 
 ```md
-
+As a existing user or new user,
+I want to be able to login/create an account, so I can have full access to the I-Hike site.
+I want to enter in a city in the search bar on the homepage, so I can get a map of nearby trails.
+I want to click on the Marker in the map and view the trail, so I can then be redirected to the specific trail page displaying a map, trail info, and directions.
+I want to have the ability to add the trail to my favorite or future hikes list, so I can view my hikes via the myHikes page with the ability to also remove said hikes.
 ```
 
 ## Acceptance Criteria
@@ -76,11 +80,13 @@ Step 1: Open VsCode(preferred) or another source-code editor if not already runn
 <br>
 Step 2: Open integrated terminal once in the main folder.
 <br>
-Step 3: "run npm i" / "sudo npm i" in the terminal to install the required dependencies.
+Step 3: run "npm i" / "sudo npm i" in the terminal to install the required dependencies.
 <br>
-Step 4: Now to run the application, Enter "npm run build" and then "npm run start", or just "npm run develop" for development.
+Setp 4: Next are the seeders, run "npm run seed".
 <br>
-Step 5: After the "VITE v5.2.10 ready in 267 ms" appears in the console, open the local host URL that's displayed in the console if you haven't automatically directed to the application.
+Step 5: Now to run the application, Enter "npm run build" and then "npm run start", or just "npm run develop" for development.
+<br>
+Step 6: After the "VITE v5.2.10 ready in 267 ms" appears in the console, open the local host URL that's displayed in the console if you haven't automatically directed to the application.
 
 ## Test Instructions:
 
@@ -97,6 +103,12 @@ For testing and debugging, the application logs requests and errors in the conso
 
 ## Built With
 
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Apollo-GraphQL](https://img.shields.io/badge/-ApolloGraphQL-311C87?style=for-the-badge&logo=apollo-graphql)
+
 - Google Maps API
 - Open Weather Map API
 - Dynamic JavaScript
@@ -104,7 +116,6 @@ For testing and debugging, the application logs requests and errors in the conso
 - CSS
 - React
 - GraphQL
-- Redux
 - JWT
 - Express
 - Apollo Server

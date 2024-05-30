@@ -1,5 +1,16 @@
 import { gql } from "@apollo/client";
 
+export const LOGIN_USER = gql`
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      profile {
+        _id
+        name
+      }
+    }
+  }
+`;
 export const ADD_PROFILE = gql`
   mutation addProfile($name: String!, $email: String!, $password: String!) {
     addProfile(name: $name, email: $email, password: $password) {
@@ -12,26 +23,41 @@ export const ADD_PROFILE = gql`
   }
 `;
 
-export const LOGIN_USER = gql`
-  mutation login($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
-      token
-      profile {
-        _id
-        name
-      }
-    }
-  }
-`;
-
 export const ADD_FAVORITE = gql`
-  mutation addFavorite($hikeId: ID!) {
-    addFavorite(hikeId: $hikeId) {
+  mutation addFavorite($hike: HikeInput!) {
+    addFavorite(hike: $hike) {
       _id
       name
       favorite_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
+      }
+    }
+  }
+`;
+
+export const ADD_FUTURE = gql`
+  mutation addFuture($hike: HikeInput!) {
+    addFuture(hike: $hike) {
+      _id
+      name
+      future_hikes {
+        _id
+        name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }
@@ -45,19 +71,13 @@ export const REMOVE_FAVORITE = gql`
       favorite_hikes {
         _id
         name
-      }
-    }
-  }
-`;
-
-export const ADD_FUTURE = gql`
-  mutation addFuture($hikeId: ID!) {
-    addFuture(hikeId: $hikeId) {
-      _id
-      name
-      future_hikes {
-        _id
-        name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }
@@ -71,6 +91,13 @@ export const REMOVE_FUTURE = gql`
       future_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }

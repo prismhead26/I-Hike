@@ -13,11 +13,15 @@ const FavoriteForm = ({ favorite_hikes }) => {
   const [removeFavorite, { error }] = useMutation(REMOVE_FAVORITE);
 
   const handleFormSubmit = async (event) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) return false;
+
     event.preventDefault();
     try {
       console.log("hike id........", selectedHikeId);
       await removeFavorite({
-        variables: { hikeId: favHikes[0]._id }, // Pass the selected hike ID to the mutation
+        variables: { hikeId: selectedHikeId }, // Pass the selected hike ID to the mutation
       });
       // Handle mutation response if needed
     } catch (err) {
@@ -26,32 +30,36 @@ const FavoriteForm = ({ favorite_hikes }) => {
   };
 
   return (
-    <div>   
+    <div>
       {Auth.loggedIn() ? (
         <form
           className="flex-row justify-center justify-space-between-md align-center"
           onSubmit={handleFormSubmit}
         >
-          {/* Display the favorite hikes and provide a way to select one */}
-          <select
-            value={selectedHikeId}
-            onChange={(event) => {
-              console.log("hike id", selectedHikeId);
-              setSelectedHikeId(event.target.value);
-            }}
-          >
+          {/* map through the favorite_hikes array and list each hike by name as a Link and pas in placeId as to={pathname: `/trail/${hike.placeId}`} and state: {trail: hike} */}
+          <div className="container">
             {favorite_hikes.map((hike) => (
-              <option key={hike} value={hike.id}>
-                {hike.name}
-              </option>
+              <ul key={hike._id} className="list-group">
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  <Link
+                    to={`/trail/${hike.placeId}`}
+                    key={hike._id}
+                    state={{ trail: hike }}
+                  >
+                    {hike.name}
+                  </Link>
+                  <button
+                    className="btn btn-info py-3"
+                    type="submit"
+                    onClick={() => setSelectedHikeId(hike._id)}
+                  >
+                    Remove Favorite
+                  </button>
+                </li>
+              </ul>
             ))}
-          </select>
-
-          <div className="col-12 col-lg-3">
-            <button className="btn btn-info btn-block py-3" type="submit">
-              Remove Favorite
-            </button>
           </div>
+
           {error && (
             <div className="col-12 my-3 bg-danger text-white p-3">
               {error.message}

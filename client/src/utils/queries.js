@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const QUERY_PROFILES = gql`
   query allProfiles {
@@ -8,10 +8,24 @@ export const QUERY_PROFILES = gql`
       favorite_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
       future_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }
@@ -25,10 +39,24 @@ export const QUERY_SINGLE_PROFILE = gql`
       favorite_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
       future_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }
@@ -42,26 +70,42 @@ export const QUERY_ME = gql`
       favorite_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
       future_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }
 `;
 
-// 
+//
 export const QUERY_HIKES = gql`
   query allHikes {
     hikes {
       _id
       name
-      location
-      distance
-      difficulty
-      description
-      image
+      location {
+        lat
+        lng
+      }
+      placeId
+      rating
+      formatted_address
     }
   }
 `;
@@ -71,11 +115,13 @@ export const QUERY_SINGLE_HIKE = gql`
     hike(hikeId: $hikeId) {
       _id
       name
-      location
-      distance
-      difficulty
-      description
-      image
+      location {
+        lat
+        lng
+      }
+      placeId
+      rating
+      formatted_address
     }
   }
 `;
