@@ -100,7 +100,7 @@ const Trail = () => {
 
   const handleAddFavorite = async () => {
     try {
-      await addFavoriteHike({ variables: { hike: { ...trail } } });
+      await addFavoriteHike({ variables: { hike: trail } });
     } catch (e) {
       console.error("Error adding to favorite hikes:", e.message);
     }
@@ -108,7 +108,7 @@ const Trail = () => {
 
   const handleAddFuture = async () => {
     try {
-      await addFutureHike({ variables: { hike: { ...trail } } });
+      await addFutureHike({ variables: { hike: trail } });
     } catch (e) {
       console.error("Error adding to future hikes:", e.message);
     }

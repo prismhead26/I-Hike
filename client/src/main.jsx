@@ -11,7 +11,7 @@ import Profile from "./pages/Profile";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
-import Trail from "./pages/trail";
+import Trail from "./pages/Trail";
 
 const router = createBrowserRouter([
   {

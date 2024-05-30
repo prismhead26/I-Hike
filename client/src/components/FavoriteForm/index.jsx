@@ -13,6 +13,10 @@ const FavoriteForm = ({ favorite_hikes }) => {
   const [removeFavorite, { error }] = useMutation(REMOVE_FAVORITE);
 
   const handleFormSubmit = async (event) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) return false;
+
     event.preventDefault();
     try {
       console.log("hike id........", selectedHikeId);

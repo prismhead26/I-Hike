@@ -22,7 +22,7 @@ const resolvers = {
           .populate({ path: "favorite_hikes" })
           .populate({ path: "future_hikes" });
       }
-      throw new AuthenticationError();
+      throw AuthenticationError();
     },
   },
 
@@ -37,13 +37,13 @@ const resolvers = {
       const profile = await Profile.findOne({ email });
 
       if (!profile) {
-        throw new AuthenticationError();
+        throw AuthenticationError();
       }
 
       const correctPw = await profile.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError();
+        throw AuthenticationError();
       }
 
       const token = signToken(profile);
@@ -64,8 +64,9 @@ const resolvers = {
             runValidators: true,
           }
         );
+      } else {
+        throw AuthenticationError();
       }
-      throw new AuthenticationError();
     },
     addFuture: async (parent, args, context) => {
       if (context.user) {
@@ -80,15 +81,16 @@ const resolvers = {
             runValidators: true,
           }
         );
+      } else {
+        throw AuthenticationError();
       }
-      throw new AuthenticationError();
     },
     // Set up mutation so a logged-in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       if (context.user) {
         return Profile.findOneAndDelete({ _id: context.user._id });
       }
-      throw new AuthenticationError();
+      throw AuthenticationError();
     },
     // Make it so a logged-in user can only remove a skill from their own profile
     removeFavorite: async (parent, { hikeId }, context) => {
@@ -100,8 +102,9 @@ const resolvers = {
           { new: true }
         );
         await Hike.findOneAndDelete({ placeId: hikeId });
+      } else {
+        throw AuthenticationError();
       }
-      throw new AuthenticationError();
     },
 
     removeFuture: async (parent, { hikeId }, context) => {
@@ -113,8 +116,9 @@ const resolvers = {
           { new: true }
         );
         await Hike.findOneAndDelete({ placeId: hikeId });
+      } else {
+        throw AuthenticationError();
       }
-      throw new AuthenticationError();
     },
   },
 };
