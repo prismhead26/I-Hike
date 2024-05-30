@@ -24,7 +24,7 @@ export const ADD_PROFILE = gql`
 `;
 
 export const ADD_FAVORITE = gql`
-  mutation addFavorite($hike: HikeInput!) {
+  mutation addFavorite($hike: Hike) {
     addFavorite(hike: $hike) {
       _id
       name

@@ -52,9 +52,9 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
 
     removeProfile: Profile
-    addFavorite(hike: HikeInput!): Profile
+    addFavorite(hike: Hike): Profile
     removeFavorite(hikeId: ID!): Profile
-    addFuture(hike: HikeInput!): Profile
+    addFuture(hike: Hike): Profile
     removeFuture(hikeId: ID!): Profile
   }
 `;
