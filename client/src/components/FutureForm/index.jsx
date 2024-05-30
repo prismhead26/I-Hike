@@ -29,6 +29,24 @@ const FutureForm = ({ future_hikes }) => {
     }
   };
 
+  //   <Link
+  //   to={`/trail/${hike.placeId}`}
+  //   key={hike._id}
+  //   state={{ trail: hike }}
+  // >
+  //   {hike.name}
+  // </Link>
+  // <button
+  //   className="btn btn-info btn-block py-3"
+  //   type="submit"
+  //   value={hike._id}
+  //   // on click set the selectedHikeId to the new object hike._id
+  //   // onClick={(event) => setSelectedHikeId(event.target.value)}
+  //   onClick={() => setSelectedHikeId(hike._id)}
+  // >
+  //   Remove Future Hike
+  // </button>
+
   return (
     <div>
       {Auth.loggedIn() ? (
@@ -37,10 +55,10 @@ const FutureForm = ({ future_hikes }) => {
           onSubmit={handleFormSubmit}
         >
           {/* map through the future_hikes array and list each hike by name as a Link and pas in placeId as to={pathname: `/trail/${hike.placeId}`} and state: {trail: hike} */}
-          <div className="container fluid">
+          <div className="container">
             {future_hikes.map((hike) => (
-              <div key={hike._id}>
-                <div className="col-12">
+              <ul key={hike._id} className="list-group">
+                <li className="list-group-item d-flex justify-content-between align-items-center">
                   <Link
                     to={`/trail/${hike.placeId}`}
                     key={hike._id}
@@ -48,20 +66,16 @@ const FutureForm = ({ future_hikes }) => {
                   >
                     {hike.name}
                   </Link>
-                </div>
-                <div className="col-12 col-lg-3">
                   <button
-                    className="btn btn-info btn-block py-3"
+                    className="btn btn-info py-3"
                     type="submit"
                     value={hike._id}
-                    // on click set the selectedHikeId to the new object hike._id
-                    // onClick={(event) => setSelectedHikeId(event.target.value)}
                     onClick={() => setSelectedHikeId(hike._id)}
                   >
                     Remove Future Hike
                   </button>
-                </div>
-              </div>
+                </li>
+              </ul>
             ))}
           </div>
 

@@ -37,26 +37,26 @@ const FavoriteForm = ({ favorite_hikes }) => {
           onSubmit={handleFormSubmit}
         >
           {/* map through the favorite_hikes array and list each hike by name as a Link and pas in placeId as to={pathname: `/trail/${hike.placeId}`} and state: {trail: hike} */}
-          <div className="col-12 col-lg-3">
+          <div className="container">
             {favorite_hikes.map((hike) => (
-              <div key={hike._id}>
-                <Link
-                  to={`/trail/${hike.placeId}`}
-                  key={hike._id}
-                  state={{ trail: hike }}
-                >
-                  {hike.name}
-                </Link>
-                <div className="col-12 col-lg-3">
+              <ul key={hike._id} className="list-group">
+                <li className="list-group-item d-flex justify-content-between align-items-center">
+                  <Link
+                    to={`/trail/${hike.placeId}`}
+                    key={hike._id}
+                    state={{ trail: hike }}
+                  >
+                    {hike.name}
+                  </Link>
                   <button
-                    className="btn btn-info btn-block py-3"
+                    className="btn btn-info py-3"
                     type="submit"
                     onClick={() => setSelectedHikeId(hike._id)}
                   >
                     Remove Favorite
                   </button>
-                </div>
-              </div>
+                </li>
+              </ul>
             ))}
           </div>
 
