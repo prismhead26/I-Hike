@@ -93,7 +93,7 @@ const resolvers = {
     // Make it so a logged-in user can only remove a skill from their own profile
     removeFavorite: async (parent, { hikeId }, context) => {
       if (context.user) {
-        hikeId = mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
+        hikeId = new mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
         await Profile.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { favorite_hikes: hikeId } },
@@ -106,7 +106,7 @@ const resolvers = {
 
     removeFuture: async (parent, { hikeId }, context) => {
       if (context.user) {
-        hikeId = mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
+        hikeId = new mongoose.Types.ObjectId(hikeId); // Convert to ObjectId
         await Profile.findOneAndUpdate(
           { _id: context.user._id },
           { $pull: { future_hikes: hikeId } },

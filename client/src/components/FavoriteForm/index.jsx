@@ -17,7 +17,7 @@ const FavoriteForm = ({ favorite_hikes }) => {
     try {
       console.log("hike id........", selectedHikeId);
       await removeFavorite({
-        variables: { hikeId: favHikes[0]._id }, // Pass the selected hike ID to the mutation
+        variables: { hikeId: selectedHikeId }, // Pass the selected hike ID to the mutation
       });
       // Handle mutation response if needed
     } catch (err) {
@@ -35,21 +35,27 @@ const FavoriteForm = ({ favorite_hikes }) => {
           {/* map through the favorite_hikes array and list each hike by name as a Link and pas in placeId as to={pathname: `/trail/${hike.placeId}`} and state: {trail: hike} */}
           <div className="col-12 col-lg-3">
             {favorite_hikes.map((hike) => (
-              <Link
-                to={`/trail/${hike.placeId}`}
-                key={hike._id}
-                state={{ trail: hike }}
-              >
-                {hike.name}
-              </Link>
+              <div key={hike._id}>
+                <Link
+                  to={`/trail/${hike.placeId}`}
+                  key={hike._id}
+                  state={{ trail: hike }}
+                >
+                  {hike.name}
+                </Link>
+                <div className="col-12 col-lg-3">
+                  <button
+                    className="btn btn-info btn-block py-3"
+                    type="submit"
+                    onClick={() => setSelectedHikeId(hike._id)}
+                  >
+                    Remove Favorite
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
 
-          <div className="col-12 col-lg-3">
-            <button className="btn btn-info btn-block py-3" type="submit">
-              Remove Favorite
-            </button>
-          </div>
           {error && (
             <div className="col-12 my-3 bg-danger text-white p-3">
               {error.message}

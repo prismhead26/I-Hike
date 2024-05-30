@@ -10,7 +10,14 @@ const FutureForm = ({ future_hikes }) => {
   const [selectedHikeId, setSelectedHikeId] = useState("");
   const [removeFuture, { error }] = useMutation(REMOVE_FUTURE);
 
+  console.log("future hike obj", future_hikes);
+  console.log("selectedHikeId", selectedHikeId);
+
   const handleFormSubmit = async (event) => {
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) return false;
+
     event.preventDefault();
     try {
       await removeFuture({
@@ -30,23 +37,34 @@ const FutureForm = ({ future_hikes }) => {
           onSubmit={handleFormSubmit}
         >
           {/* map through the future_hikes array and list each hike by name as a Link and pas in placeId as to={pathname: `/trail/${hike.placeId}`} and state: {trail: hike} */}
-          <div className="col-12 col-lg-3">
+          <div className="container fluid">
             {future_hikes.map((hike) => (
-              <Link
-                to={`/trail/${hike.placeId}`}
-                key={hike._id}
-                state={{ trail: hike }}
-              >
-                {hike.name}
-              </Link>
+              <div key={hike._id}>
+                <div className="col-12">
+                  <Link
+                    to={`/trail/${hike.placeId}`}
+                    key={hike._id}
+                    state={{ trail: hike }}
+                  >
+                    {hike.name}
+                  </Link>
+                </div>
+                <div className="col-12 col-lg-3">
+                  <button
+                    className="btn btn-info btn-block py-3"
+                    type="submit"
+                    value={hike._id}
+                    // on click set the selectedHikeId to the new object hike._id
+                    // onClick={(event) => setSelectedHikeId(event.target.value)}
+                    onClick={() => setSelectedHikeId(hike._id)}
+                  >
+                    Remove Future Hike
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
 
-          <div className="col-12 col-lg-3">
-            <button className="btn btn-info btn-block py-3" type="submit">
-              Remove Future Hike
-            </button>
-          </div>
           {error && (
             <div className="col-12 my-3 bg-danger text-white p-3">
               {error.message}

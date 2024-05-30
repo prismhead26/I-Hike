@@ -31,7 +31,7 @@ const typeDefs = `
     name: String
     location: LocationInput
     placeId: String
-    rating: String
+    rating: Float
     formatted_address: String
   }
 
