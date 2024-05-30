@@ -11,7 +11,6 @@ export const LOGIN_USER = gql`
     }
   }
 `;
-
 export const ADD_PROFILE = gql`
   mutation addProfile($name: String!, $email: String!, $password: String!) {
     addProfile(name: $name, email: $email, password: $password) {
@@ -32,6 +31,13 @@ export const ADD_FAVORITE = gql`
       favorite_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }
@@ -45,6 +51,13 @@ export const ADD_FUTURE = gql`
       future_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }
@@ -58,6 +71,13 @@ export const REMOVE_FAVORITE = gql`
       favorite_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }
@@ -71,6 +91,13 @@ export const REMOVE_FUTURE = gql`
       future_hikes {
         _id
         name
+        location {
+          lat
+          lng
+        }
+        placeId
+        rating
+        formatted_address
       }
     }
   }

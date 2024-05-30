@@ -9,14 +9,27 @@ const typeDefs = `
   }
 
   type Location {
-    lat: Int
-    lng: Int
+    lat: Float
+    lng: Float
+  }
+
+  input LocationInput {
+    lat: Float
+    lng: Float
   }
   
   type Hike {
     _id: ID
     name: String
     location: Location
+    placeId: String
+    rating: String
+    formatted_address: String
+  }
+
+  input HikeInput {
+    name: String
+    location: LocationInput
     placeId: String
     rating: String
     formatted_address: String
@@ -39,9 +52,9 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
 
     removeProfile: Profile
-    addFavorite(hike: Hike): Profile
+    addFavorite(hike: HikeInput!): Profile
     removeFavorite(hikeId: ID!): Profile
-    addFuture(hike: Hike): Profile
+    addFuture(hike: HikeInput!): Profile
     removeFuture(hikeId: ID!): Profile
   }
 `;
