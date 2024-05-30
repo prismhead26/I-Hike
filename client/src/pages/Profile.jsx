@@ -1,4 +1,4 @@
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 
 import FutureForm from "../components/FutureForm";
