@@ -13,7 +13,7 @@ const typeDefs = `
     lng: Float
   }
 
-  input LocationInput {
+  input Location {
     lat: Float
     lng: Float
   }
@@ -23,13 +23,13 @@ const typeDefs = `
     name: String
     location: Location
     placeId: String
-    rating: String
+    rating: Float
     formatted_address: String
   }
 
-  input HikeInput {
+  input Hike {
     name: String
-    location: LocationInput
+    location: Location
     placeId: String
     rating: Float
     formatted_address: String
