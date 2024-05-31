@@ -37,8 +37,11 @@ function App() {
 
   useEffect(() => {
     const darkStorage = localStorage.getItem("darkMode");
-
-    setIsDarkMode(darkStorage);
+    if (darkStorage === null || darkStorage === "false") {
+      localStorage.setItem("darkMode", false);
+    } else {
+      setIsDarkMode(darkStorage);
+    }
   }, []);
 
   const toggleBackgroundColor = () => {
