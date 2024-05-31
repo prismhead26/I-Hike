@@ -28,11 +28,14 @@ const Header = ({ toggleBackgroundColor }) => {
         style={{ backgroundColor: "#92AFD7" }}
       >
         <div className="container fluid">
-          <a className="custom navbar-brand" href="/">
+          <Link
+            to="/"
+            className={currentPage === "/" ? "nav-link active" : "nav-link"}
+          >
             <b>
               <i>iHike</i>
             </b>
-          </a>
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
