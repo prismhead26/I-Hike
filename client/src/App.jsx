@@ -50,8 +50,8 @@ function App() {
   };
 
   const appStyle = {
-    backgroundColor: isDarkMode ? "black" : "white",
-    color: isDarkMode ? "lightgray" : "black",
+    backgroundColor: isDarkMode ? "#262322" : "#E0E0E0",
+    color: isDarkMode ? "white" : "black",
     minHeight: "100vh",
     transition: "background-color 0.5s ease",
   };

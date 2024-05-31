@@ -58,6 +58,7 @@ const Header = ({ toggleBackgroundColor }) => {
                   sx={{ ml: 1 }}
                   onClick={toggleBackgroundColor}
                   color="inherit"
+                  className="modebtn"
                 >
                   {theme.palette.mode === "dark" ? (
                     <Brightness7Icon />

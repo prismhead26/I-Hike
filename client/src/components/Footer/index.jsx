@@ -4,7 +4,7 @@ import Auth from "../../utils/auth";
 const Footer = () => {
   const location = useLocation();
   return (
-    <footer className="w-100 mt-auto text-dark p-4">
+    <footer className="w-100 mt-auto  p-4">
       <div className="container text-center mb-5">
         {location.pathname !== "/" && (
           <Link to={"/"} className="btn btn-dark mb-3">
