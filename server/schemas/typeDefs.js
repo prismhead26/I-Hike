@@ -18,18 +18,18 @@ const typeDefs = `
     lng: Float
   }
   
-  type Hike {
-    _id: ID
+  input HikeInput {
     name: String
-    location: Location
+    location: LocationInput
     placeId: String
     rating: Float
     formatted_address: String
   }
 
-  input HikeInput {
+  type Hike {
+    _id: ID
     name: String
-    location: LocationInput
+    location: Location
     placeId: String
     rating: Float
     formatted_address: String

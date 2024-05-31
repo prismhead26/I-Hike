@@ -80,10 +80,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-
-
-// <p>Humidity: {weather.humidity}%</p>
-// <p>Wind Speed: {weather.windSpeed} MPH</p>

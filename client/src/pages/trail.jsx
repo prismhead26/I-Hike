@@ -18,7 +18,6 @@ const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 const CustomMap = () => {
   // retrieve the trail from the state that was passed from link in Home.jsx
   const trail = useLocation().state?.trail;
-  console.log("trail State...", trail);
 
   const map = useMap();
 
@@ -44,7 +43,6 @@ const CustomMap = () => {
             className="btn btn-primary mb-3"
             // add a link to google maps directions to the trail using the trail placeId
             href={`https://www.google.com/maps/dir/?api=1&destination=${trail.location.lat},${trail.location.lng}`}
-            // href={`https://www.google.com/maps/search/?api=1&query=${trail.name}`}
             target="_blank"
             rel="noreferrer"
           >

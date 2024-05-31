@@ -6,8 +6,6 @@ import FavoriteForm from "../components/FavoriteForm";
 
 import { QUERY_SINGLE_PROFILE, QUERY_ME } from "../utils/queries";
 
-// import Auth from "../utils/auth";
-
 const Profile = () => {
   const { profileId } = useParams();
 
@@ -21,12 +19,6 @@ const Profile = () => {
 
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const profile = data?.me || data?.profile || {};
-  console.log("profile", profile.favorite_hikes);
-
-  // Use React Router's `<Redirect />` component to redirect to personal profile page if username is yours
-  // if (Auth.loggedIn() && Auth.getProfile().data._id === profileId) {
-  //   return <Navigate to="/me" />;
-  // }
 
   if (loading) {
     return <div>Loading...</div>;
