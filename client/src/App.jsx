@@ -9,7 +9,7 @@ import { Outlet } from "react-router-dom";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -35,13 +35,20 @@ const client = new ApolloClient({
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+  useEffect(() => {
+    const darkStorage = localStorage.getItem("darkMode");
+
+    setIsDarkMode(darkStorage);
+  }, []);
+
   const toggleBackgroundColor = () => {
+    localStorage.setItem("darkMode", !isDarkMode);
     setIsDarkMode(!isDarkMode);
   };
 
   const appStyle = {
     backgroundColor: isDarkMode ? "black" : "white",
-    color: isDarkMode ? "white" : "black",
+    color: isDarkMode ? "lightgray" : "black",
     minHeight: "100vh",
     transition: "background-color 0.5s ease",
   };

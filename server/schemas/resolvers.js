@@ -51,13 +51,13 @@ const resolvers = {
     },
 
     // Add a third argument to the resolver to access data in our `context`
-    addFavorite: async (parent, args, context) => {
+    addFavorite: async (parent, { hike }, context) => {
       if (context.user) {
-        const newHike = await Hike.create(args);
+        const newHike = await Hike.create(hike);
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
           {
-            $addToSet: { favorite_hikes: newHike.placeId },
+            $addToSet: { favorite_hikes: newHike._id },
           },
           {
             new: true,
@@ -68,13 +68,13 @@ const resolvers = {
         throw AuthenticationError();
       }
     },
-    addFuture: async (parent, args, context) => {
+    addFuture: async (parent, { hike }, context) => {
       if (context.user) {
-        const newHike = await Hike.create(args);
+        const newHike = await Hike.create(hike);
         return Profile.findOneAndUpdate(
           { _id: context.user._id },
           {
-            $addToSet: { future_hikes: newHike.placeId },
+            $addToSet: { future_hikes: newHike._id },
           },
           {
             new: true,

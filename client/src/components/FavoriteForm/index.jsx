@@ -23,6 +23,7 @@ const FavoriteForm = ({ favorite_hikes }) => {
       await removeFavorite({
         variables: { hikeId: selectedHikeId }, // Pass the selected hike ID to the mutation
       });
+      window.location.reload();
       // Handle mutation response if needed
     } catch (err) {
       console.error(err);
