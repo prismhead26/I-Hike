@@ -30,7 +30,7 @@ const Header = ({ toggleBackgroundColor }) => {
         <div className="container fluid">
           <a className="custom navbar-brand" href="/">
             <b>
-              <i>I-Hike</i>
+              <i>iHike</i>
             </b>
           </a>
           <button
@@ -49,7 +49,7 @@ const Header = ({ toggleBackgroundColor }) => {
               {/* add darkmode icon btn */}
               <li className="custom mx-2 nav-item">
                 <b>
-                  <i>{theme.palette.mode} mode</i>
+
                 </b>
                 <IconButton
                   sx={{ ml: 1 }}
