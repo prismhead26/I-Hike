@@ -10,9 +10,6 @@ const FutureForm = ({ future_hikes }) => {
   const [selectedHikeId, setSelectedHikeId] = useState("");
   const [removeFuture, { error }] = useMutation(REMOVE_FUTURE);
 
-  console.log("future hike obj", future_hikes);
-  console.log("selectedHikeId", selectedHikeId);
-
   const handleFormSubmit = async (event) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 

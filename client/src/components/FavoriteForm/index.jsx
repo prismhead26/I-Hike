@@ -7,8 +7,6 @@ import { REMOVE_FAVORITE } from "../../utils/mutations";
 import Auth from "../../utils/auth";
 
 const FavoriteForm = ({ favorite_hikes }) => {
-  const favHikes = favorite_hikes;
-  console.log("fav hike obj", favHikes);
   const [selectedHikeId, setSelectedHikeId] = useState("");
   const [removeFavorite, { error }] = useMutation(REMOVE_FAVORITE);
 
@@ -19,7 +17,6 @@ const FavoriteForm = ({ favorite_hikes }) => {
 
     event.preventDefault();
     try {
-      console.log("hike id........", selectedHikeId);
       await removeFavorite({
         variables: { hikeId: selectedHikeId }, // Pass the selected hike ID to the mutation
       });

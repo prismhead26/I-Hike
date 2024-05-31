@@ -29,8 +29,6 @@ const Markers = ({ coords }) => {
   useEffect(() => {
     if (!placesLib || !map) return;
 
-    console.log("coords...", coords);
-
     // create a request object to fetch hiking trails near the location
     const request = {
       location: coords,
@@ -43,8 +41,6 @@ const Markers = ({ coords }) => {
     // create an instance of the PlacesService and fetch the hiking trails using the textSearch method
     const service = new placesLib.PlacesService(map);
     service.textSearch(request, (results, status) => {
-      console.log("results...", results);
-      console.log("status...", status);
       if (status === placesLib.PlacesServiceStatus.OK) {
         const trailResults = results.map((trail) => ({
           placeId: trail.place_id,

@@ -30,8 +30,6 @@ export const fetchWeather = async (
     );
     const detailedWeatherData = await detailedWeatherResponse.json();
 
-    console.log(detailedWeatherData);
-
     // Map the data to the required format
     const weatherInfo = {
       description: detailedWeatherData.weather[0].description,
