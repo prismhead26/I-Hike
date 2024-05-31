@@ -33,7 +33,7 @@ const Header = ({ toggleBackgroundColor }) => {
             className={currentPage === "/" ? "nav-link active" : "nav-link"}
           >
             <b>
-              <i>I-Hike</i>
+              <i>iHike</i>
             </b>
           </Link>
           <button
@@ -52,7 +52,7 @@ const Header = ({ toggleBackgroundColor }) => {
               {/* add darkmode icon btn */}
               <li className="custom mx-2 nav-item">
                 <b>
-                  <i>{theme.palette.mode} mode</i>
+
                 </b>
                 <IconButton
                   sx={{ ml: 1 }}
