@@ -45,6 +45,12 @@
   margin-bottom: 10px;
 }
 
+.navbar i {
+  color: black;
+}
+
+
+
 /* .weather-container {
   display: flex;
   flex-direction: column;
@@ -129,6 +135,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.addbtns {
+  margin-top: 25px;
 }
 
 

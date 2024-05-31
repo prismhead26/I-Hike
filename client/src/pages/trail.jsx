@@ -34,11 +34,12 @@ const CustomMap = () => {
   const handleClose = useCallback(() => setInfoWindowShown(false), []);
 
   return (
-    <div>
+    <div >
       {trail && trail.location && (
         <div>
-          <h1>{trail.name}</h1>
-          <p>{trail.formatted_address}</p>
+          <h1 className="my-3">{trail.name}</h1>
+          <p><b><i>Address: </i></b>{trail.formatted_address}</p>
+          <p><b><i>Rating: </i></b>{trail.rating}</p>
           <a
             className="btn btn-primary mb-3"
             // add a link to google maps directions to the trail using the trail placeId
@@ -48,6 +49,7 @@ const CustomMap = () => {
           >
             Google Directions to {trail.name}
           </a>
+          <div className="map-container">
           <Map
             mapId={"map"}
             style={{ width: "50vw", height: "50vh" }}
@@ -84,6 +86,7 @@ const CustomMap = () => {
               </>
             )}
           </Map>
+          </div>
         </div>
       )}
     </div>
@@ -114,11 +117,11 @@ const Trail = () => {
 
   return (
     <APIProvider apiKey={apiKey}>
-      <CustomMap />
+    <CustomMap /> 
       {trail && (
-        <div>
-          <button onClick={handleAddFavorite}>Add to Favorite Hikes</button>
-          <button onClick={handleAddFuture}>Add to Future Hikes</button>
+        <div className="addbtns">
+          <button className="btn btn-success mb-3 mr-2" onClick={handleAddFavorite}>Add to Favorite Hikes</button>
+          <button className="btn btn-success mb-3 " onClick={handleAddFuture}>Add to Future Hikes</button>
         </div>
       )}
     </APIProvider>
