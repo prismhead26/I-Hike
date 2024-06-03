@@ -34,31 +34,45 @@ const Profile = () => {
   }
 
   return (
-    <div>
+    <>
+    {profile.favorite_hikes?.length ? (
+      <div>
       <h2 className="card-header mt-4">
         <b><i>Favorite Hikes</i></b>
       </h2>
-      {profile.favorite_hikes?.length > 0 && (
-        <FavoriteForm
-          favorite_hikes={profile.favorite_hikes}
-          profileId={profile._id}
-        />
-      )}
-
+      <FavoriteForm
+        favorite_hikes={profile.favorite_hikes}
+        profileId={profile._id}
+      />
+      </div>
+      
+    ): (
+      <div>
+      <h2 className="card-header mt-4">
+        <b><i>Favorite Hikes</i></b>
+      </h2>
+      <p>No favorite hikes yet!</p>
+      </div>
+    )}
+    {profile.future_hikes?.length ? (
+      <div>
       <h2 className="card-header mt-4">
         <b><i>Future Hikes</i></b>
       </h2>
-
-      {profile.future_hikes?.length > 0 && (
-        <FutureForm
-          future_hikes={profile.future_hikes}
-          profileId={profile._id}
-        />
-      )}
-    </div>
-  );
+      <FutureForm
+        future_hikes={profile.future_hikes}
+        profileId={profile._id}
+      />
+      </div>
+    ): (
+      <div>
+      <h2 className="card-header mt-4">
+        <b><i>Future Hikes</i></b>
+      </h2>
+      <p>No future hikes yet!</p>
+      </div>
+    )}
+    </>)
 };
 
 export default Profile;
-
-// {profileId ? `${profile.name}'s` : "Your"}

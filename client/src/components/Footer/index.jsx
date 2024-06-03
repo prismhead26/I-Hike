@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Link, useLocation } from "react-router-dom";
-import Auth from "../../utils/auth";
+import { useLocation } from "react-router-dom";
+
+import BackButton from '../BackButton';
 
 const Footer = () => {
   const location = useLocation();
@@ -9,9 +10,7 @@ const Footer = () => {
     <footer className="w-100 mt-auto p-2">
       <div className="container text-center mb-5">
         {location.pathname !== "/" && (
-          <Link to={"/"} className="btn btn-dark mb-4">
-            Back
-          </Link>
+          <BackButton/>
         )}
         <h5>
           &copy; {new Date().getFullYear()} - <b><i>iHike</i></b>
