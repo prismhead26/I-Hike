@@ -4,7 +4,7 @@ const AboutPage = () => {
     <div className="container mt-5">
       <div className="row justify-content-center">
         <div className="col-md-8">
-          <h2 className="text-center mb-4">About iHike</h2>
+          <h2 className="text-center mb-4">About <b><i>iHike</i></b></h2>
           <p><strong>Motivation for Creating iHike:</strong></p>
           <p>
             In a world where technology often keeps us indoors, iHike was created by two programmers with a passion to reconnect with nature and the great outdoors for everyone. We recognized a gap in the market for an all-encompassing hiking app that caters to all adventuring hikers, whether their skill level is beginner, intermediate, or seasoned adventurists.
