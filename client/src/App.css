@@ -232,9 +232,6 @@ footer a:hover {
 }
 
 @media (max-width: 600px) {
-  .mt-auto {
-    margin-top: 0;
-  }
   footer h6 {
     margin-top: 15px;
   }
