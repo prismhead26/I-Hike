@@ -222,6 +222,15 @@ footer a:hover {
 }
 
 /* Media query for screens with a maximum width of 600px */
+@media (max-width: 400px){
+  .city-input {
+    width: 60%;
+  }
+  .base-Input-input {
+    width: 200px;
+  }
+}
+
 @media (max-width: 600px) {
   footer h6 {
     margin-top: 15px;
