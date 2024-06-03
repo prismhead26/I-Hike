@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 import { REMOVE_FAVORITE } from "../../utils/mutations";
-
 import Auth from "../../utils/auth";
 
 const FavoriteForm = ({ favorite_hikes }) => {
@@ -31,15 +32,16 @@ const FavoriteForm = ({ favorite_hikes }) => {
     <div>
       {Auth.loggedIn() ? (
         <form
-          className="flex-row justify-center justify-space-between-md align-center"
+          className="flex-row justify-center justify-space-between-md align-center myHikesContainer mt-3"
           onSubmit={handleFormSubmit}
         >
           {/* map through the favorite_hikes array and list each hike by name as a Link and pas in placeId as to={pathname: `/trail/${hike.placeId}`} and state: {trail: hike} */}
           <div className="container">
             {favorite_hikes.map((hike) => (
               <ul key={hike._id} className="list-group">
-                <li className="list-group-item d-flex justify-content-between align-items-center">
+                <li className="list-group-item d-flex justify-content-between align-items-center pr-4 pl-4">
                   <Link
+                    className="trailLink"
                     to={`/trail/${hike.placeId}`}
                     key={hike._id}
                     state={{ trail: hike }}
@@ -47,11 +49,11 @@ const FavoriteForm = ({ favorite_hikes }) => {
                     {hike.name}
                   </Link>
                   <button
-                    className="btn btn-info py-3"
+                    className="btn py-2"
                     type="submit"
                     onClick={() => setSelectedHikeId(hike._id)}
                   >
-                    Remove Favorite
+                    <FontAwesomeIcon icon={faTrashCan} size="1x" />
                   </button>
                 </li>
               </ul>
@@ -75,3 +77,4 @@ const FavoriteForm = ({ favorite_hikes }) => {
 };
 
 export default FavoriteForm;
+
