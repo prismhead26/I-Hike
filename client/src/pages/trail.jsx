@@ -120,7 +120,7 @@ const Trail = () => {
       {trail && (
         <div className="addbtns">
           <button className="btn btn-success mb-3 mr-2" onClick={handleAddFavorite}>Add to Favorite Hikes</button>
-          <button className="btn btn-success mb-3 " onClick={handleAddFuture}>Add to Future Hikes</button>
+          <button className="btn btn-success mb-3 mr-2" onClick={handleAddFuture}>Add to Future Hikes</button>
         </div>
       )}
     </APIProvider>
