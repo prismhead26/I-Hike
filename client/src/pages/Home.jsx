@@ -5,6 +5,7 @@ import { fetchWeather } from "../utils/API/openWeatherMap";
 import TrailsMap from "../utils/API/googleMaps";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import Image from "../components/ImageContainer";
 
 const Home = () => {
   const [city, setCity] = useState("");
@@ -119,6 +120,9 @@ const Home = () => {
               </div>
             </div>
           )
+        )}
+        {!loading && !weather && (
+          <Image />
         )}
       </div>
     </main>
