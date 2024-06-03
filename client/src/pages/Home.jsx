@@ -49,7 +49,9 @@ const Home = () => {
 
   return (
     <main>
-      <div className="container my-4">
+      <h1 className="text-center m-3">Weather and Hiking Trails</h1>
+      {error && <div>{error} <br /> Must enter a valid city name!</div>}
+      <div className="container my-3">
         <div className="input-container mb-3">
           <Input
             value={cityName}
