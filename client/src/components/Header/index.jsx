@@ -84,6 +84,20 @@ const Header = ({ toggleBackgroundColor }) => {
                     </Link>
                   </li>
                   <li className="custom mx-2 nav-item">
+                    <Link
+                      to="/about"
+                      className={
+                        currentPage === "/about"
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <b>
+                        <i>About</i>
+                      </b>
+                    </Link>
+                  </li>
+                  <li className="custom mx-2 nav-item">
                     <a href="/" onClick={logout} className="nav-link">
                       <b>
                         <i>Logout</i>
@@ -118,6 +132,20 @@ const Header = ({ toggleBackgroundColor }) => {
                     >
                       <b>
                         <i>Signup</i>
+                      </b>
+                    </Link>
+                  </li>
+                  <li className="custom mx-2 nav-item">
+                    <Link
+                      to="/about"
+                      className={
+                        currentPage === "/about"
+                          ? "nav-link active"
+                          : "nav-link"
+                      }
+                    >
+                      <b>
+                        <i>About</i>
                       </b>
                     </Link>
                   </li>

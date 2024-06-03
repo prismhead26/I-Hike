@@ -5,6 +5,7 @@ import { fetchWeather } from "../utils/API/openWeatherMap";
 import TrailsMap from "../utils/API/googleMaps";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowsRotate } from "@fortawesome/free-solid-svg-icons";
+import Image from "../components/ImageContainer";
 
 const Home = () => {
   const [city, setCity] = useState("");
@@ -49,7 +50,9 @@ const Home = () => {
 
   return (
     <main>
-      <div className="container my-4">
+      <h1 className="text-center m-3"><b><i>Weather and Hiking Trails</i></b></h1>
+      {error && <div>{error} <br /> Must enter a valid city name!</div>}
+      <div className="container my-3">
         <div className="input-container mb-3">
           <Input
             value={cityName}
@@ -117,6 +120,9 @@ const Home = () => {
               </div>
             </div>
           )
+        )}
+        {!loading && !weather && (
+          <Image />
         )}
       </div>
     </main>
