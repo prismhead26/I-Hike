@@ -15,7 +15,7 @@ const Home = () => {
     lng: -105.280243,
   });
 
-      // lowercase each word in city name except for the first letter of each word
+      // maps through city name and caps the first letter of each work
   const cityName = city.split(" ").map((word) => {
     return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   }).join(" ");
