@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import BackButton from '../BackButton';
 

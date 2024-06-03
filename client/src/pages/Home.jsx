@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input } from "@mui/base";
 import { Button } from "@mui/base";
 import { fetchWeather } from "../utils/API/openWeatherMap";
@@ -14,6 +14,28 @@ const Home = () => {
     lat: 39.997246,
     lng: -105.280243,
   });
+
+  // save city to local storage and set city to local storage
+  useEffect(() => {
+    const savedCity = localStorage.getItem("city");
+    if (savedCity) {
+      setCity(savedCity);
+    }
+
+    fetchWeather(
+      savedCity,
+      setWeather,
+      setLoading,
+      setError,
+      setNewCoords,
+      setGearRecommendation
+    );
+  }, [])
+
+  // save city to local storage
+  useEffect(() => {
+    localStorage.setItem("city", city);
+  }, [city])
 
   return (
     <main>
@@ -47,6 +69,16 @@ const Home = () => {
           >
             Search
           </Button>
+          {/* add a clear search button which sets city to '' */}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => {setCity("")
+              window.location.reload();
+            }}
+            className="btn btn-outline-secondary search-button">
+            Clear Search
+            </Button>
         </div>
         {loading ? (
           <div>Loading...</div>
@@ -70,7 +102,7 @@ const Home = () => {
               <section>Gear Recommendation: {gearRecommendation}</section>
               <div className="map-container">
                 <TrailsMap
-                 coords={newCoords} />
+                  coords={newCoords} />
               </div>
             </div>
           )
