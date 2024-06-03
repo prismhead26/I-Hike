@@ -7,7 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./App";
 import Home from "./pages/Home";
-import Profile from "./pages/Profile";
+import About from "./pages/About";
+import MyHikes from "./pages/MyHikes";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
@@ -32,12 +33,16 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
+        path: "/about",
+        element: <About />,
+      },
+      {
         path: "/me",
-        element: <Profile />,
+        element: <MyHikes />,
       },
       {
         path: "/myHikes/:profileId",
-        element: <Profile />,
+        element: <MyHikes />,
       },
       {
         path: "/trail/:trailId",

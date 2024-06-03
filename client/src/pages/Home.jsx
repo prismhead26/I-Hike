@@ -49,7 +49,7 @@ const Home = () => {
 
   return (
     <main>
-      <h1 className="text-center m-3">Weather and Hiking Trails</h1>
+      <h1 className="text-center m-3"><b><i>Weather and Hiking Trails</i></b></h1>
       {error && <div>{error} <br /> Must enter a valid city name!</div>}
       <div className="container my-3">
         <div className="input-container mb-3">
