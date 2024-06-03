@@ -52,7 +52,7 @@ const CustomMap = () => {
           <div className="map-container">
           <Map
             mapId={"map"}
-            style={{ width: "50vw", height: "50vh" }}
+            className="mapSize"
             defaultCenter={trail.location}
             defaultZoom={10}
             gestureHandling={"greedy"}
@@ -66,7 +66,6 @@ const CustomMap = () => {
                   position={trail.location}
                   title={trail.name}
                   onClick={() => {
-                    console.log("clicked on marker state.coordsResult", trail);
                     handleMarkerClick();
                   }}
                   ref={markerRef}

@@ -69,7 +69,8 @@ const Home = () => {
               </div>
               <section>Gear Recommendation: {gearRecommendation}</section>
               <div className="map-container">
-                <TrailsMap coords={newCoords} />
+                <TrailsMap
+                 coords={newCoords} />
               </div>
             </div>
           )

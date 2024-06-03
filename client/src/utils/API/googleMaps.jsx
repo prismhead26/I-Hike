@@ -83,7 +83,6 @@ const Markers = ({ coords }) => {
               position={trail.location}
               title={trail.name}
               onClick={() => {
-                console.log("clicked on marker state.coordsResult", trail);
                 handleMarkerClick(trail);
               }}
             />
@@ -124,7 +123,7 @@ export default function TrailsMap({ coords }) {
     <APIProvider apiKey={apiKey}>
       <Map
         mapId={"trailsMap"}
-        style={{ width: "50vw", height: "50vh" }}
+        className="mapSize"
         defaultCenter={coords}
         defaultZoom={10}
         gestureHandling={"greedy"}

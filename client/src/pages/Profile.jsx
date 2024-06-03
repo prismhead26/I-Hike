@@ -26,17 +26,17 @@ const Profile = () => {
 
   if (!profile?.name) {
     return (
-      <h4>
-        You need to be logged in to see your profile page. Use the navigation
+      <h5 className="goLogin mt-5">
+        You need to be logged in to see your profile page. <br /> Use the navigation
         links above to sign up or log in!
-      </h4>
+      </h5>
     );
   }
 
   return (
     <div>
-      <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : "Your"} favorite hikes...
+      <h2 className="card-header mt-4">
+        <b><i>Favorite Hikes</i></b>
       </h2>
       {profile.favorite_hikes?.length > 0 && (
         <FavoriteForm
@@ -45,8 +45,8 @@ const Profile = () => {
         />
       )}
 
-      <h2 className="card-header">
-        {profileId ? `${profile.name}'s` : "Your"} future hikes...
+      <h2 className="card-header mt-4">
+        <b><i>Future Hikes</i></b>
       </h2>
 
       {profile.future_hikes?.length > 0 && (
@@ -60,3 +60,5 @@ const Profile = () => {
 };
 
 export default Profile;
+
+// {profileId ? `${profile.name}'s` : "Your"}
