@@ -15,6 +15,11 @@ const Home = () => {
     lng: -105.280243,
   });
 
+      // lowercase each word in city name except for the first letter of each word
+  const cityName = city.split(" ").map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  }).join(" ");
+
   // save city to local storage and set city to local storage
   useEffect(() => {
     const savedCity = localStorage.getItem("city");
@@ -22,27 +27,31 @@ const Home = () => {
       setCity(savedCity);
     }
 
-    fetchWeather(
-      savedCity,
-      setWeather,
-      setLoading,
-      setError,
-      setNewCoords,
-      setGearRecommendation
-    );
+    // fetch weather data if city is saved
+    if (savedCity && savedCity !== "") {
+      fetchWeather(
+        savedCity,
+        setWeather,
+        setLoading,
+        setError,
+        setNewCoords,
+        setGearRecommendation
+      );
+    }
+
   }, [])
 
   // save city to local storage
   useEffect(() => {
-    localStorage.setItem("city", city);
-  }, [city])
+    localStorage.setItem("city", cityName);
+  }, [cityName])
 
   return (
     <main>
       <div className="container my-3">
         <div className="input-container mb-3">
           <Input
-            value={city}
+            value={cityName}
             onChange={(e) => setCity(e.target.value)}
             placeholder="Enter city"
             className="city-input"
@@ -53,7 +62,7 @@ const Home = () => {
             onClick={async () => {
               try {
                 await fetchWeather(
-                  city,
+                  cityName,
                   setWeather,
                   setLoading,
                   setError,
@@ -85,7 +94,7 @@ const Home = () => {
         ) : (
           weather && (
             <div className="hike-container text-center">
-              <h2 className="weather-city">Weather in {city}</h2>
+              <h2 className="weather-city">Weather in {cityName}</h2>
               <div className="weather-info">
                 <p className="weather-description">
                   Description: {weather.description}
