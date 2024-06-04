@@ -51,9 +51,7 @@ const Header = ({ toggleBackgroundColor }) => {
             <ul className="navbar-nav ms-auto">
               {/* add darkmode icon btn */}
               <li className="custom mx-2 nav-item">
-                <b>
-
-                </b>
+                <b></b>
                 <IconButton
                   sx={{ ml: 1 }}
                   onClick={toggleBackgroundColor}
@@ -77,6 +75,7 @@ const Header = ({ toggleBackgroundColor }) => {
                       className={
                         currentPage === "/me" ? "nav-link active" : "nav-link"
                       }
+                      replace={true}
                     >
                       <b>
                         <i>myHikes</i>
