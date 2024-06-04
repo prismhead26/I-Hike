@@ -104,8 +104,15 @@ For testing and debugging, the application logs requests and errors in the conso
 
 ## Screenshots:
 
-![alt text](./public/images/screenshot.png)
+![Home](./assets/images/home.png)
+
 <br>
+
+![Maps](./assets/images/map.png)
+
+<br>
+
+![Trail](./assets/images/trail.png)
 
 ## Built With
 
@@ -118,6 +125,7 @@ For testing and debugging, the application logs requests and errors in the conso
 - Google Maps API
 - Open Weather Map API
 - Dynamic JavaScript
+- MUI
 - HTML
 - CSS
 - React
