@@ -12,7 +12,7 @@ import MyHikes from "./pages/MyHikes";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Error from "./pages/Error";
-import Trail from "./pages/Trail";
+import Trail from "./pages/trail";
 
 const router = createBrowserRouter([
   {
