@@ -100,7 +100,7 @@ For testing and debugging, the application logs requests and errors in the conso
 
 ## Solution URL:
 
-[Solution URL Link to Live Application:]()
+[Solution URL Link to Live Application via Render:](https://i-hike.onrender.com/)
 
 ## Screenshots:
 
