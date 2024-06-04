@@ -19,9 +19,12 @@ const Home = () => {
   });
 
   // Maps through city name and caps the first letter of each word
-  const cityName = city.split(" ").map((word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  }).join(" ");
+  const cityName = city
+    .split(" ")
+    .map((word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
 
   // Save city to local storage and set city to local storage
   useEffect(() => {
@@ -50,8 +53,16 @@ const Home = () => {
 
   return (
     <main>
-      <h1 className="text-center m-3"><b><i>Start your Adventure</i></b></h1>
-      {error && <div>{error} <br /> Must enter a valid city name!</div>}
+      <h1 className="text-center m-3">
+        <b>
+          <i>Start your Adventure</i>
+        </b>
+      </h1>
+      {error && (
+        <div>
+          {error} <br /> Must enter a valid city name!
+        </div>
+      )}
       <div className="container my-4">
         <div className="input-container mb-3">
           <Input
@@ -121,9 +132,7 @@ const Home = () => {
             </div>
           )
         )}
-        {!loading && !weather && (
-          <Image />
-        )}
+        {!loading && !weather && <Image />}
       </div>
     </main>
   );
