@@ -13,7 +13,6 @@ import { ADD_FAVORITE, ADD_FUTURE } from "../utils/mutations";
 //import { getHikeIdFromPlaceId } from '../../../server/utils/hikeUtils';
 
 // api key for google maps
-// const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
 const apiKey = import.meta.env.VITE_GOOGLE_MAPS;
 
 const CustomMap = () => {
