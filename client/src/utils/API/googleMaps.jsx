@@ -10,7 +10,8 @@ import { Fragment, useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // api key for google maps
-const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
+// const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS;
 
 // fetch hiking trails function
 const Markers = ({ coords }) => {

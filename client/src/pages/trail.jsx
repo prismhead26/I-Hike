@@ -13,7 +13,8 @@ import { ADD_FAVORITE, ADD_FUTURE } from "../utils/mutations";
 //import { getHikeIdFromPlaceId } from '../../../server/utils/hikeUtils';
 
 // api key for google maps
-const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
+// const apiKey = "AIzaSyA1pDFcj5Ge7lM9Gpj4-b4aI874D0aG7iA";
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS;
 
 const CustomMap = () => {
   // retrieve the trail from the state that was passed from link in Home.jsx
@@ -34,12 +35,22 @@ const CustomMap = () => {
   const handleClose = useCallback(() => setInfoWindowShown(false), []);
 
   return (
-    <div >
+    <div>
       {trail && trail.location && (
         <div>
           <h1 className="my-3">{trail.name}</h1>
-          <p><b><i>Address: </i></b>{trail.formatted_address}</p>
-          <p><b><i>Rating: </i></b>{trail.rating}</p>
+          <p>
+            <b>
+              <i>Address: </i>
+            </b>
+            {trail.formatted_address}
+          </p>
+          <p>
+            <b>
+              <i>Rating: </i>
+            </b>
+            {trail.rating}
+          </p>
           <a
             className="btn btn-primary mb-3"
             // add a link to google maps directions to the trail using the trail placeId
@@ -50,41 +61,41 @@ const CustomMap = () => {
             Google Directions to {trail.name}
           </a>
           <div className="map-container">
-          <Map
-            mapId={"map"}
-            className="mapSize"
-            defaultCenter={trail.location}
-            defaultZoom={10}
-            gestureHandling={"greedy"}
-            disableDefaultUI={true}
-          >
-            {/* diplay advanced marker and infoWindow */}
-            {map && (
-              <>
-                <AdvancedMarker
-                  key={trail.placeId}
-                  position={trail.location}
-                  title={trail.name}
-                  onClick={() => {
-                    handleMarkerClick();
-                  }}
-                  ref={markerRef}
-                />
-                {infoWindowShown && (
-                  <InfoWindow
-                    anchor={marker}
-                    onCloseClick={handleClose}
-                    options={{ maxWidth: 300 }}
-                  >
-                    <div>
-                      <h1>{trail.name}</h1>
-                      <p>{trail.formatted_address}</p>
-                    </div>
-                  </InfoWindow>
-                )}
-              </>
-            )}
-          </Map>
+            <Map
+              mapId={"map"}
+              className="mapSize"
+              defaultCenter={trail.location}
+              defaultZoom={10}
+              gestureHandling={"greedy"}
+              disableDefaultUI={true}
+            >
+              {/* diplay advanced marker and infoWindow */}
+              {map && (
+                <>
+                  <AdvancedMarker
+                    key={trail.placeId}
+                    position={trail.location}
+                    title={trail.name}
+                    onClick={() => {
+                      handleMarkerClick();
+                    }}
+                    ref={markerRef}
+                  />
+                  {infoWindowShown && (
+                    <InfoWindow
+                      anchor={marker}
+                      onCloseClick={handleClose}
+                      options={{ maxWidth: 300 }}
+                    >
+                      <div>
+                        <h1>{trail.name}</h1>
+                        <p>{trail.formatted_address}</p>
+                      </div>
+                    </InfoWindow>
+                  )}
+                </>
+              )}
+            </Map>
           </div>
         </div>
       )}
@@ -116,11 +127,21 @@ const Trail = () => {
 
   return (
     <APIProvider apiKey={apiKey}>
-    <CustomMap /> 
+      <CustomMap />
       {trail && (
         <div className="addbtns">
-          <button className="btn btn-success mb-3 mr-2" onClick={handleAddFavorite}>Add to Favorite Hikes</button>
-          <button className="btn btn-success mb-3 mr-2" onClick={handleAddFuture}>Add to Future Hikes</button>
+          <button
+            className="btn btn-success mb-3 mr-2"
+            onClick={handleAddFavorite}
+          >
+            Add to Favorite Hikes
+          </button>
+          <button
+            className="btn btn-success mb-3 mr-2"
+            onClick={handleAddFuture}
+          >
+            Add to Future Hikes
+          </button>
         </div>
       )}
     </APIProvider>

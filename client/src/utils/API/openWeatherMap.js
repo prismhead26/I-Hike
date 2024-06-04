@@ -1,6 +1,7 @@
 // file for API calls to OpenWeatherMap
 
-const apiKey = "1659a8c1977a91b5deedda1d9206f21e";
+// const apiKey = "1659a8c1977a91b5deedda1d9206f21e";
+const apiKey = import.meta.env.VITE_WEATHER_MAP;
 
 export const fetchWeather = async (
   city,
