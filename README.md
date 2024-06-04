@@ -125,6 +125,7 @@ For testing and debugging, the application logs requests and errors in the conso
 - Google Maps API
 - Open Weather Map API
 - Dynamic JavaScript
+- MUI
 - HTML
 - CSS
 - React
